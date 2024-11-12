@@ -6,10 +6,9 @@ import { Form, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../authSlice";
 import * as Yup from "yup";
-import logo from "../../assets/logo.PNG";
+import logo from "../../assets/logo.png";
 
-import "./login.scss";
-
+import "./login.scss"
 const validationSchema = Yup.object().shape({
   email: Yup.string("Debe ingresar su usuario")
     .email("Debe ingresar un email")
@@ -21,8 +20,8 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const { loading, error, token } = useSelector((state) => state.login);
-  const dispatch = useDispatch();
+  // const { loading, error, token } = useSelector((state) => state.login);
+  // const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -32,24 +31,24 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (values) => {
-    const credentials = {
-      user: values.email,
-      password: values.password,
-    }
-    dispatch(login(credentials));
+    // const credentials = {
+
+    //   user: values.email,
+    //   password: values.password,
+    // }
+    // dispatch(login(credentials));
   };
 
-  useEffect(() => {
-    if (token) {
-      navigate('/home');
-    }
-  }, [token, navigate]);
+  // useEffect(() => {
+  //   if (token) {
+  //     navigate('/home');
+  //   }
+  // }, [token, navigate]);
 
   return (
-    <div className="body">
+     
       <Container className="container-login">
-        <img className="logo-login" src={loginImage} />
-
+       <img className="logo-login" src={logo} />
         <Formik 
           initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
@@ -68,7 +67,7 @@ const Login = () => {
             isSubmitting,
           }) => (
             <Form onSubmit={formikHandleSubmit}>
-              <Form.Group className="mt-3" controlId="formBasicEmail">
+              <Form.Group className="mt-3 form-login" controlId="formBasicEmail">
                 <Form.Control className="form-control-password"
                   type="email"
                   name="email"
@@ -95,13 +94,6 @@ const Login = () => {
                     onBlur={handleBlur}
                     isInvalid={!!errors.password && touched.password}
                   />
-                  <span className="toggle-visibility" onClick={togglePasswordVisibility}>
-                    {passwordVisible ? (
-                      <img className="img-eye" src={eye} alt="Ocultar contraseña" />
-                    ) : (
-                      <img  className="img-eye" src={hidden} alt="Mostrar contraseña" />
-                    )}      
-                  </span>
 
                   <Form.Control.Feedback type="invalid">
                       {touched.password && errors.password && (
@@ -120,18 +112,19 @@ const Login = () => {
               </div>
 
               <div className="bnt-container">
-                <Button className="btn-large login-btn"
+                <Button className="btn-large"
                     variant="primary"
                     type="submit"
                     disabled={isSubmitting}
                   >
-                  {loading ? 'Loading...' : 'Ingresar'}
+                   Ingresar
+                  {/* {loading ? 'Loading...' : 'Ingresar'} */}
                 </Button>
                 <Button className="btn-create"
                     variant="primary"
                     type="submit"
                     disabled={isSubmitting}
-                    onClick={()=>navigate("/select-user")}
+                    onClick={()=>navigate("/usuario-registro")}
                   >
                     Crear Cuenta
                 </Button>
@@ -140,7 +133,6 @@ const Login = () => {
           )}
         </Formik>
       </Container>
-    </div>
   );
 }
 
