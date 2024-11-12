@@ -1,0 +1,115 @@
+@use "../../sass/utils/variables" as var; 
+
+
+body, .container {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem; // Agrega un padding general para evitar bordes salidos en pantallas pequeñas
+}
+
+.container-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: var.$primary-04;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    color: #FFFFFF;
+    border: 1px solid var.$primary-01;
+    gap: 0px;
+}
+
+.img-register {
+    max-width: 100px;
+    margin-bottom: 1.5rem;
+}
+
+.form-register {
+    background-color: var.$neutral-04;
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 328px;
+    padding: 8px 0px 8px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    border: none;
+
+    &:focus {
+        border-color: #9E1B32;
+        box-shadow: 0 0 5px rgba(158, 27, 50, 0.5);
+    }
+}
+
+.btn-register {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #9E1B32;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #b94e67;
+        color: #FFFFFF;
+    }
+}
+
+.btn-large {
+    font-size: 1.1rem;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+    .container-register {
+        padding: 1.5rem;
+        max-width: 90%;
+        border-radius: 8px;
+    }
+
+    .img-register {
+        max-width: 80px;
+        margin-bottom: 1rem;
+    }
+
+    .form-register {
+        width: 100%;
+        padding: 8px 8px;
+        font-size: 14px;
+    }
+
+    .btn-register {
+        font-size: 16px;
+        padding: 0.5rem;
+    }
+
+    .btn-large {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container-register {
+        padding: 2rem;
+        max-width: 90%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .container-register {
+        padding: 2rem;
+        max-width: 800px;
+    }
+}
