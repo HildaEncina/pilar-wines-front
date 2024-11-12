@@ -4,12 +4,11 @@ import { Form, Button, Container } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRef , useState} from 'react';
-// import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
 import logo from "../../assets/logo.png";
 // import eye from "../../assets/eye.png";
 // import hidden from "../../assets/Vector.png"
 import "./usuario-registro_styles.scss";
-
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -49,29 +48,63 @@ const UsuarioRegistro = () => {
     setConfPasswordVisible(!confPasswordVisible);
   };
 
-//   const sendEmail = async () => {
-//     try {
-//       await emailjs.sendForm(
-//         import.meta.env.VITE_EMAILJS_SERVICE_ID,
-//         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-//         form.current,
-//         { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
-//       );
-//       return "SUCCESS";
-//     } catch (error) {
-//       console.log(error)
-//       return error.text;
-//     }
-//   };
+  const sendEmail = async () => {
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      );
+      return "SUCCESS";
+    } catch (error) {
+      console.log(error)
+      return error.text;
+    }
+  };
   
   const handleSubmit = (values) => {
-    console.log(values);
-
+    console.log("Nombre:", values.name);
+    console.log("Apellido:", values.lastName);
+    console.log("Email:", values.email);
+    console.log("Password:", values.password);
+    console.log("Confirmation Password:", values.confirmPassword);
+    
+    axios
+      .post("http://localhost:8081/api/Mascoteros/registro", {
+        nombre: values.name,
+        apellido: values.lastName,
+        email: values.email,
+        password: values.password,
+      })
+      .then(async (response) => {
+        console.log("Response:", response);
+  
+        // Llamar a sendEmail y esperar su respuesta
+        const emailStatus = await sendEmail();
+        
+        if (emailStatus === "SUCCESS") {
+          navigate("/register/account-validation");
+        } else {
+          console.error("Error al enviar el email:", emailStatus);
+        }
+  
+      })
+      .catch((error) => {
+        console.log('el error es: ' + error)
+        const response = JSON.parse(error.request.response);
+        console.log('la respuesta es: ' + response)
+  
+        if (response.errors && response.errors.includes("Ya existe un usuario registrado con esa dirección de email")) {
+          navigate("/register/refused");
+        } else {
+          console.error("Error:", response.errors);
+        }
+      });
   };
   
 
   return (
-    <div className="container">
       <Container className="container-register">
         <img className="img-register" src={logo}/>
         <Formik
@@ -154,7 +187,14 @@ const UsuarioRegistro = () => {
                       isInvalid={!!errors.password && touched.password}
                     />
                     <div className="container-pass">
-                   
+                    {/* <span className="toggle-visibility" onClick={togglePasswordVisibility}>
+                                      {passwordVisible ? (
+                                        <img src={eye} alt="Ocultar contraseña" />
+                                      ) : (
+                                        <img src={hidden} alt="Mostrar contraseña" />
+                                      )}
+                                    
+                      </span> */}
                     <Form.Control.Feedback type="invalid">
                       {errors.password}
                     </Form.Control.Feedback>
@@ -176,7 +216,14 @@ const UsuarioRegistro = () => {
                       isInvalid={!!errors.confirmPassword && touched.confirmPassword}
                     />
                     
-                 
+                    {/* <span className="toggle-visibility" onClick={toggleConfPasswordVisibility}>
+                                      {confPasswordVisible ? (
+                                        <img src={eye} alt="Ocultar contraseña" />
+                                      ) : (
+                                        <img src={hidden} alt="Mostrar contraseña" />
+                                      )}
+                                    
+                    </span> */}
                     <Form.Control.Feedback type="invalid">
                       {errors.confirmPassword}
                     </Form.Control.Feedback>
@@ -200,7 +247,6 @@ const UsuarioRegistro = () => {
           )}
         </Formik>
       </Container>
-    </div>
   );
 }
 

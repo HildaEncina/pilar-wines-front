@@ -9,9 +9,11 @@
   justify-content: flex-start; 
   padding: 1rem;
   border: 0.5rem solid var.$primary-01; 
+  width: 600px !important;
   
 }
  
+
 .logo-login {
   width: 106.67px;
   height: 99px;
@@ -24,6 +26,7 @@
 background-color: var.$primary-04 !important;
 color: var.$primary-01 !important;
 border-color: var.$primary-01 !important;
+width: 400px !important;
 }
 
 .login-btn {
@@ -97,7 +100,7 @@ border-color: var.$primary-01 !important;
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 .container-recordarme {

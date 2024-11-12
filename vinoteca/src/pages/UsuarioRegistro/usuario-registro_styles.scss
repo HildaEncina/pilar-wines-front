@@ -1,115 +1,75 @@
 @use "../../sass/utils/variables" as var; 
+@import "node_modules/bootstrap/scss/bootstrap";
 
 
-body, .container {
-    height: 100%;
-    margin: 0;
+body {
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 1rem; // Agrega un padding general para evitar bordes salidos en pantallas pequeñas
+    align-items: center;
+    margin: 0;
+    width: 100%;
 }
 
 .container-register {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
-    background-color: var.$primary-04;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    color: #FFFFFF;
-    border: 1px solid var.$primary-01;
-    gap: 0px;
+    padding: 1rem;
+    border: 0.5rem solid var.$primary-01;
+    width: 600px !important;
 }
 
-.img-register {
-    max-width: 100px;
-    margin-bottom: 1.5rem;
-}
-
-.form-register {
-    background-color: var.$neutral-04;
-    border: 1px solid #ddd;
-    padding: 0.75rem;
-    color: #333;
-    font-size: 16px;
+.img-register{
+    width: 106.67px;
+    height: 99px;
+    margin-top: 1rem;
     margin-bottom: 1rem;
-    width: 100%;
-    max-width: 328px;
-    padding: 8px 0px 8px 16px;
-    border-radius: 4px;
-    font-size: 16px;
-    border: none;
-
-    &:focus {
-        border-color: #9E1B32;
-        box-shadow: 0 0 5px rgba(158, 27, 50, 0.5);
-    }
 }
 
 .btn-register {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 18px;
-    color: #FFFFFF;
-    background-color: #9E1B32;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    justify-content: center; 
+    margin-top: 20px;
+    width: 400px !important;
+    margin-bottom: 60px;
+    
+}
 
-    &:hover {
-        background-color: #b94e67;
-        color: #FFFFFF;
+.form-register { 
+    padding-right: 80px;
+    background-color: var.$neutral-04 !important;
+    border: none !important;
+    color:var.$secondary-01 !important;
+    width: 80%;
+   
+
+}
+
+
+@media (max-width:800px) {
+    .container-register{
+        width: 80% !important;
     }
 }
 
-.btn-large {
-    font-size: 1.1rem;
+
+.container-pass {
+   display: relative; 
+   
 }
+  
+  .toggle-visibility {
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .forgot-password {
 
-/* Estilos Responsivos */
-@media (max-width: 600px) {
-    .container-register {
-        padding: 1.5rem;
-        max-width: 90%;
-        border-radius: 8px;
-    }
-
-    .img-register {
-        max-width: 80px;
-        margin-bottom: 1rem;
-    }
-
-    .form-register {
-        width: 100%;
-        padding: 8px 8px;
-        font-size: 14px;
-    }
-
-    .btn-register {
-        font-size: 16px;
-        padding: 0.5rem;
-    }
-
-    .btn-large {
-        font-size: 1rem;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-    .container-register {
-        padding: 2rem;
-        max-width: 90%;
-    }
-}
-
-@media (min-width: 1025px) {
-    .container-register {
-        padding: 2rem;
-        max-width: 800px;
-    }
-}
+    color: var.$secondary-01;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: auto;
+  }
+  

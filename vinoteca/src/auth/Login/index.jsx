@@ -46,8 +46,8 @@ const Login = () => {
   // }, [token, navigate]);
 
   return (
-     
-      <Container className="container-login">
+    <div className="container">
+     <Container className="container-login">
        <img className="logo-login" src={logo} />
         <Formik 
           initialValues={{ email: "", password: "" }}
@@ -67,7 +67,7 @@ const Login = () => {
             isSubmitting,
           }) => (
             <Form onSubmit={formikHandleSubmit}>
-              <Form.Group className="mt-3 form-login" controlId="formBasicEmail">
+              <Form.Group controlId="formBasicEmail">
                 <Form.Control className="form-control-password"
                   type="email"
                   name="email"
@@ -133,6 +133,9 @@ const Login = () => {
           )}
         </Formik>
       </Container>
+
+    </div>
+     
   );
 }
 
