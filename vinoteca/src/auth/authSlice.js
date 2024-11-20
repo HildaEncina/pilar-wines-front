@@ -1,30 +1,39 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api/api';
 
-//Login
-export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
-  try {
-    const response = await api.post('/Authentication/token', credentials);
-    return response.data; // Se asume que la respuesta contiene { token: 'token_value' }
-  } catch (error) {
-    return rejectWithValue(error.response.data);
-  }
-});
+// Estado inicial
+const initialState = {
+  token: localStorage.getItem('token') || null,
+  userId: null,
+  rol: null,
+  loading: false,
+  error: null,
+};
 
+// Acción asincrónica para el login
+export const login = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await api.post('/usuario/login', credentials);
+      console.log('Respuesta del servidor:', response.data); // Muestra el token
+      return response.data; // { token }
+    } catch (error) {
+      console.error('Error en la petición:', error.response?.data || error);
+      return rejectWithValue(error.response?.data || { mensaje: 'Error desconocido' });
+    }
+  }
+);
+
+// Slice de autenticación
 const authSlice = createSlice({
-  name: 'login',
-  initialState: {
-    token:  localStorage.getItem('token') ? localStorage.getItem('token') : null,
-    userId: null,
-    role: null,
-    loading: false,
-    error: null,
-  },
+  name: 'auth',
+  initialState,
   reducers: {
     logout: (state) => {
       state.token = null;
       state.userId = null;
-      state.role = null;
+      state.rol = null;
       localStorage.removeItem('token');
     },
   },
@@ -35,17 +44,26 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
+        const { token } = action.payload;
+        if (token) {
+          const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica el JWT para extraer el payload
+          state.token = token;
+          state.userId = decodedToken.id; // Extrae el ID del usuario del token
+          state.rol = decodedToken.rol;  // Extrae el rol del token
+          localStorage.setItem('token', token);
+        } else {
+          state.error = 'No se recibió un token válido del servidor';
+        }
         state.loading = false;
-        state.token = action.payload.token;
-        state.userId = action.payload.usuario.id;
-        state.role = action.payload.usuario.tipoRegistro.descripcion;
-        localStorage.setItem('token', action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload?.mensaje || 'Error al iniciar sesión';
       });
-  }});
+  },
+});
 
+// Exporta las acciones y el reducer
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
+

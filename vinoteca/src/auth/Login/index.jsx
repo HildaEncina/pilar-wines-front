@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../authSlice";
 import * as Yup from "yup";
 import logo from "../../assets/logo.png";
+import { jwtDecode } from 'jwt-decode';
+
+
 
 import "./login.scss"
 const validationSchema = Yup.object().shape({
@@ -20,30 +23,42 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  // const { loading, error, token } = useSelector((state) => state.login);
-  // const dispatch = useDispatch();
+  
+  // Obtener estado de Redux
+  const { loading, error, token, rol } = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-
-  const navigate = useNavigate();
-
+  // Manejo del submit
   const handleSubmit = (values) => {
-    // const credentials = {
-
-    //   user: values.email,
-    //   password: values.password,
-    // }
-    // dispatch(login(credentials));
+    const credentials = {
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(login(credentials));
+    console.log('Token:', token); 
+   
   };
 
-  // useEffect(() => {
-  //   if (token) {
-  //     navigate('/home');
-  //   }
-  // }, [token, navigate]);
+  useEffect(() => {
+    if (token) {
+        try {
+
+            if (rol === "cliente") {
+                navigate("/home");
+            } else {
+              navigate("/home");
+            }
+        } catch (error) {
+            console.error("Error al decodificar el token:", error);
+        }
+    }
+}, [token, navigate]);
+  
 
   return (
     <div className="container">
@@ -117,8 +132,8 @@ const Login = () => {
                     type="submit"
                     disabled={isSubmitting}
                   >
-                   Ingresar
-                  {/* {loading ? 'Loading...' : 'Ingresar'} */}
+              
+                {loading ? 'Loading...' : 'Ingresar'} 
                 </Button>
                 <Button className="btn-create"
                     variant="primary"

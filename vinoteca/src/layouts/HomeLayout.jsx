@@ -64,10 +64,10 @@ const HomeLayout = ({children}) => {
 
         <Offcanvas show={show} onHide={handleClose}>
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Muma</Offcanvas.Title>
+            <Offcanvas.Title>Pilar Wines </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <p>Desarrollado por Hilda y Seba</p>
+            <p>Desarrollado por Hilda</p>
             <Button onClick={handleLogOut} variant="primary">
               Logout
             </Button>
@@ -80,7 +80,7 @@ const HomeLayout = ({children}) => {
               <Col className="d-flex position-relative p-0">
                 <Form.Control
                   type="text"
-                  placeholder="Nombre, estado, protectora y sexo"
+                  placeholder="Marca, cosecha, tipo"
                   className="input-search"
                 />
                 <Button className="position-absolute top-50 end-0 translate-middle-y h-100 btn-search p-0" type="submit">
@@ -93,7 +93,7 @@ const HomeLayout = ({children}) => {
 
         <div className="container categories">
           <h2 className="my-4 categories__title">Categorias</h2>
-          <div className="slider-container">
+          {/* <div className="slider-container">
             <Slider {...settings} style={{width: "450px"}}>
               <div className="slide">
                 <Button className="btn-categories">
@@ -120,7 +120,7 @@ const HomeLayout = ({children}) => {
                 </Button>
               </div>
             </Slider>
-          </div>
+          </div> */}
         </div>
       </div>
       <div>
