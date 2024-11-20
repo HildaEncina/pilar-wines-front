@@ -43,7 +43,21 @@ body {
    
 
 }
-
+.password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  
+    .form-control {
+      padding-right: 2rem; // Deja espacio para el ícono
+    }
+  
+    .toggle-visibility {
+      position: absolute;
+      right: 10px;
+      font-size: 1.2rem;
+    }
+  }
 
 @media (max-width:800px) {
     .container-register{

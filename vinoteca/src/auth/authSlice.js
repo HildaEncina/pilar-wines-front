@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api/api';
+import {jwtDecode} from 'jwt-decode';
 
 // Estado inicial
 const initialState = {
@@ -46,7 +47,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         const { token } = action.payload;
         if (token) {
-          const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica el JWT para extraer el payload
+          const decodedToken = jwtDecode(token); // Decodifica el JWT para extraer el payload
           state.token = token;
           state.userId = decodedToken.id; // Extrae el ID del usuario del token
           state.rol = decodedToken.rol;  // Extrae el rol del token
@@ -63,7 +64,7 @@ const authSlice = createSlice({
   },
 });
 
-// Exporta las acciones y el reducer
+
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
 
