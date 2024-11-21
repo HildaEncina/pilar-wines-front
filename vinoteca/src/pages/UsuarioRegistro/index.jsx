@@ -151,7 +151,7 @@ const UsuarioRegistro = () => {
                 className="form-register"
                 type="text"
                 name="nombre"
-                placeholder="nombre*"
+                placeholder="Nombre*"
                 value={values.nombre}
                 onChange={handleChange}
                 onBlur={handleBlur}

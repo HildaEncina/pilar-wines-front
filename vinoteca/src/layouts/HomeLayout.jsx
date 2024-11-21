@@ -6,10 +6,7 @@ import { logout } from '../auth/authSlice';
 import profile from "../assets/home-layout/profile.png";
 import menu from "../assets/home-layout/menu.png";
 import search from "../assets/home-layout/search.png";
-import catFace from "../assets/home-layout/Cat-Face.png";
-import dogFace from "../assets/home-layout/Dog-Face.png";
-import rabbitFace from "../assets/home-layout/Rabbit-Face.png";
-import hamster from "../assets/home-layout/Hamster.png";
+
 import "./home-layout.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -93,34 +90,6 @@ const HomeLayout = ({children}) => {
 
         <div className="container categories">
           <h2 className="my-4 categories__title">Categorias</h2>
-          {/* <div className="slider-container">
-            <Slider {...settings} style={{width: "450px"}}>
-              <div className="slide">
-                <Button className="btn-categories">
-                  <img src={catFace} alt="cat-face" className="me-2" style={{width: '18px', height: '18px'}}/>
-                  Gato
-                </Button>
-              </div>
-              <div className="slide">
-                <Button className="btn-categories">
-                  <img src={dogFace} alt="dog-face" className="me-2" style={{width: '18px', height: '18px'}}/>
-                  Perro
-                </Button>
-              </div>
-              <div className="slide">
-                <Button className="btn-categories">
-                  <img src={hamster} alt="hamster-face" className="me-2" style={{width: '18px', height: '18px'}}/>
-                  Hamster
-                </Button>
-              </div>
-              <div className="slide">
-                <Button className="btn-categories">
-                  <img src={rabbitFace} alt="rabbit-face" className="me-2" style={{width: '18px', height: '18px'}}/>
-                  Conejo
-                </Button>
-              </div>
-            </Slider>
-          </div> */}
         </div>
       </div>
       <div>

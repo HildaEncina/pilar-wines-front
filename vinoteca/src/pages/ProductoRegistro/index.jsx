@@ -7,28 +7,21 @@ import { Formik } from "formik";
 import { Form, Button, Container, Alert} from "react-bootstrap";
 import validationSchema from "./validationShcema";
 import "./producto-registro.scss"
+import "../../api/api"
 
 const ProductoRegistro = () => {
-  // const [subiendo, setSubiendo] = useState(false);
-  // const { token, userId } = useSelector((state) => state.login);
+  const [subiendo, setSubiendo] = useState(false);
+  const { token, userId } = useSelector((state) => state.login);
   const form = useRef();
   const navigate = useNavigate();
   
   const initialState = {
     id: 0,
-    nombre: "",
-    tipoAnimal: "",
-    raza: "",
+    marca: "",
+    tipo: "",
     descripcion: "",
-    sexo: "",
-    tamano: "",
-    temperamentoConAnimales: "",
-    temperamentoConPersonas: "",
-    edad: 3,
-    estado: "",
-    ciudad: "",
-    mesAnioNacimiento: "",
-    // protectoraId: userId,
+    cosecha: "",
+    precio: 0,
     fotos: [],
   }
 
@@ -36,14 +29,14 @@ const ProductoRegistro = () => {
     const formDataArray = fotos.map((imagen) => {
       const formData = new FormData();
       formData.append("file", imagen);
-      formData.append("upload_preset", "mumapreset"); 
+      formData.append("upload_preset", "pilarWines"); 
       return formData;
     });
   
     try {
       const responses = await Promise.all(
         formDataArray.map((formData) =>
-          axios.post("https://api.cloudinary.com/v1_1/dkthfc4hc/image/upload", formData)
+          axios.post("https://api.cloudinary.com/v1_1/djn5lvybe/image/upload", formData)
         )
       );
       return responses.map((response) => response.data.secure_url);
@@ -54,36 +47,30 @@ const ProductoRegistro = () => {
   };
   
   const handleSubmit = async (values) => {
-    // setSubiendo(true);
+    setSubiendo(true);
 
-    // const formatMesAnio = (fecha) => {
-    //   const date = new Date(fecha);
-    //   const year = date.getFullYear();
-    //   const month = (`0${date.getMonth() + 1}`).slice(-2);
-    //   return `${year}-${month}`;
-    // };
+     try {
+       const imageUrl = await uploadImagesToCloudinary(values.fotos);
+       const data = {
+        marca: values.marca,
+        tipo: values.tipo || "N/A",
+        descripcion: values.descripcion || "N/A",
+        cosecha: values.cosecha,
+        precio: values.precio,
+        fotos: imageUrl, 
+      };
 
-    // try {
-    //   const imageUrl = await uploadImagesToCloudinary(values.fotos);
+       
 
-    //   const data = {
-    //     ...values,
-    //     fotos: imageUrl,
-    //     mesAnioNacimiento: formatMesAnio(values.mesAnioNacimiento),
-    //     protectoraId: 1, //sobreescribo el id porque no funciona con el id de la protectora logueada.
-    //   };
-
-    //   console.log(data)
-
-    //   const requestAuthenticated = apiAuthenticated(token); 
-    //   const response = await requestAuthenticated.post("/Mascotas/registro", data);
-    //   console.log(response.data);
-    //   navigate("/register/pet/upload-successful");
-    // } catch (error) {
-    //   console.error("Error al agregar animal:", error);
-    // } finally {
-    //   setSubiendo(false);
-    // }
+     
+       const response = await axios.post("http://localhost:8082/api/producto/crear", data);
+       console.log(response.data);
+       navigate("/register/pet/upload-successful");
+     } catch (error) {
+       console.error("Error al agregar un producto:", error);
+     } finally {
+     setSubiendo(false);
+   }
   };
 
   return (
@@ -110,10 +97,10 @@ const ProductoRegistro = () => {
         }) => (
 
           <Form ref={form} onSubmit={formikHandleSubmit} encType="multipart/form-data">
-            <Form.Group className="mb-3" controlId="nombre">
+            <Form.Group className="mb-3" controlId="marca">
               <Form.Control className="form"
                 type="text"
-                name="nombre"
+                name="marca"
                 placeholder="Marca*"
                 value={values.marca}
                 onChange={handleChange}
@@ -121,55 +108,36 @@ const ProductoRegistro = () => {
                 isInvalid={!!errors.marca && touched.marca}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.nombre}
+                {errors.marca}
               </Form.Control.Feedback>
             </Form.Group>
 
 
-            <Form.Group className="mb-3 position-relative" controlId="variedad">
+            <Form.Group className="mb-3 position-relative" controlId="tipo">
               <Form.Control  className="form"
                 as="select"
-                name="variedad"
-                value={values.variedad}
+                name="tipo"
+                value={values.tipo}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isInvalid={!!errors.variedad && touched.variedad}
+                isInvalid={!!errors.tipo && touched.tipo}
               >
                 <option value="">Variedad*</option>
-                <option value="Perro">Malbec</option>
-                <option value="Gato">Cabernet Franc</option>
+                <option value="Malbec">Malbec</option>
+                <option value="Cabernet">Cabernet Franc</option>
                 <option value="Otro">Otro</option>
               </Form.Control>
               <Form.Control.Feedback type="invalid">
-                {errors.tipoAnimal}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3 position-relative " controlId="tamano">
-              <Form.Control  className="form"
-                as="select"
-                name="tamano"
-                value={values.tamano}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isInvalid={!!errors.tamano && touched.tamano}
-              >
-                <option value="">Tamaño*</option>
-                <option value="Pequeño">Pequeño</option>
-                <option value="Mediano">Mediano</option>
-                <option value="Grande">Grande</option>
-              </Form.Control>
-              <Form.Control.Feedback type="invalid">
-                  {errors.tamano}
+                {errors.tipo}
               </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="cosecha">
-            <span className="placeholder-text">Cosecha</span> 
+            <span className="placeholder-text"></span> 
               <Form.Control className="form"
-                type="date"
+                type="text"
                 name="cosecha"
-                placeholder="Cosecha"
+                placeholder="Cosecha*"
                 value={values.cosecha}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -191,6 +159,21 @@ const ProductoRegistro = () => {
                 onBlur={handleBlur}
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="precio">
+              <Form.Control className="form"
+                type="number"
+                name="precio"
+                placeholder="Precio*"
+                value={values.precio}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={!!errors.precio && touched.precio}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.precio}
+              </Form.Control.Feedback>
+            </Form.Group>
+
 
             <Form.Group className="mb-3" controlId="fotos">
               <Form.Label>Cargar imágenes (máximo 10)</Form.Label>
@@ -199,21 +182,21 @@ const ProductoRegistro = () => {
                 name="fotos" 
                 multiple 
                 onChange={(event) => {
-                  const file = event.target.files[0]; // Obtiene el primer archivo
+                  const file = event.target.files[0]; 
                   if (file) {
-                    setFieldValue('fotos', [file]); // Establece el archivo en un array
+                    setFieldValue('fotos', [file]); 
                   }
                 }} 
-                isInvalid={!!errors.fotos && touched.fotos} // Indica que hay un error
+                isInvalid={!!errors.fotos && touched.fotos} 
               />
               <Form.Control.Feedback type="invalid">
                 {errors.fotos}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button className="btn-large" variant="primary" type="submit" /*disabled={isSubmitting || subiendo}*/>
-              Agregar Producto
-              {/* {subiendo ? "Subiendo imágenes..." : "Agregar Animal"} */}
+            <Button className="btn-large" variant="primary" type="submit" disabled={isSubmitting || subiendo}>
+             
+              {subiendo ? "Subiendo imágenes..." : "Agregar Producto"} 
             </Button>
           </Form>
         )}
