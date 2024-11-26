@@ -7,6 +7,10 @@ import ProductoRegistro from "./pages/ProductoRegistro";
 import Home from './Pages/Home';
 import HomeLayout from './layouts/HomeLayout';
 import CardProducto from "./componente/CardProducto";
+import ProductoDetalle from "./pages/ProductoDetalle";
+import foto1 from "./assets/home-layout/botella.jpg";
+import foto2 from "./assets/home-layout/botella.jpg";
+
 
 const  App = () => {
   const producto = {marca:"Trapiche",
@@ -14,6 +18,11 @@ const  App = () => {
     cosecha: "2024",
     precio: 17000
   }
+  const producto1 = {marca:"Trapiche",
+    tipo:"Malbec",
+    cosecha: "2024",
+    precio: 17000,
+    fotos: [foto1, foto2]}
   return (
     <>
       
@@ -30,6 +39,7 @@ const  App = () => {
         cosecha={producto.cosecha}
         precio={producto.precio}
          />} />
+        <Route path="/producto-detalle" element={<ProductoDetalle producto={producto1}/>} />
 
       </Routes>
     </>

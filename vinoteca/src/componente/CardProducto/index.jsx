@@ -1,5 +1,4 @@
 
-import React from "react";
 import { Card, CardMedia, CardContent, Typography, IconButton, Box, ButtonBase } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import logo from "../../assets/home-layout/botella.jpg";
@@ -10,7 +9,7 @@ const CardProducto = ({ marca,tipo,cosecha, precio }) => {
 
     const navigate= useNavigate();
 const irDetalle= ()=> {
-    navigate("/login")
+    navigate("/producto-detalle")
 }
   return (
     <ButtonBase onClick={irDetalle} sx={{ display: "block", textAlign: "inherit" }}>
