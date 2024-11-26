@@ -6,8 +6,14 @@ import Login from "./auth/Login"
 import ProductoRegistro from "./pages/ProductoRegistro";
 import Home from './Pages/Home';
 import HomeLayout from './layouts/HomeLayout';
+import CardProducto from "./componente/CardProducto";
 
 const  App = () => {
+  const producto = {marca:"Trapiche",
+    tipo:"Malbec",
+    cosecha: "2024",
+    precio: 17000
+  }
   return (
     <>
       
@@ -19,6 +25,12 @@ const  App = () => {
         <HomeLayout><Home /></HomeLayout>}
       />
         <Route path="/producto-registro" element={<ProductoRegistro />} />
+        <Route path="/card-producto" element={<CardProducto marca={producto.marca}
+        tipo={producto.tipo}
+        cosecha={producto.cosecha}
+        precio={producto.precio}
+         />} />
+
       </Routes>
     </>
   );
