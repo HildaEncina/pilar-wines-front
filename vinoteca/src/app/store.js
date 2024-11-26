@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "../auth/authSlice";
-import petSlice from "../Pages/Home/petSlice";
+import productoReducer from "../pages/Home/productoSlice";
 
 export const store = configureStore({
     reducer: {
         login: authSlice,
-        pets: petSlice,
+        producto:  productoReducer,
     },
 });

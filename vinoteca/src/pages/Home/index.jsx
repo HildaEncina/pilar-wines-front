@@ -1,35 +1,60 @@
 import { useEffect } from "react";
 import { Container, Button } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from 'react-redux';
+import {listarProductos} from "../Home/productoSlice";
+import CardProducto from "../../componente/CardProducto"; 
 
 import "./home.scss";
 
+
+
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  // Seleccionar datos del estado
   const { token, rol } = useSelector((state) => state.login);
+  const {productosDisponibles} = useSelector((state) => state.producto); 
+ 
+  useEffect(() => {
+    dispatch(listarProductos());
+  }, [dispatch]);
 
-
-
-
+  // Verificar token y redirigir al login si no está presente
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
   }, [token, navigate]);
 
+ 
+  
+  
+
   return (
     <Container
       fluid
       className="home-container d-flex align-items-center justify-content-center position-relative"
     >
-      {/* { petsAvailable.length < 1 ? */}
-      <p className="text-center">
-        No hay productos registrados <br /> actualmente
-      </p>{" "}
-    
+     
+     { productosDisponibles.length < 1 ?
+        ( <p className="text-center">No hay animales registrados <br /> actualmente</p>) :
+        
+        <div className="productos-grid">
+          {productosDisponibles.map((producto) => (
+            <CardProducto
+              key={producto._id}
+              marca={producto.marca}
+              tipo={producto.tipo}
+              cosecha={producto.cosecha}
+              precio={producto.precio}
+              fotos={producto.fotos} // Pasar la lista de fotos al componente
+            />
+          ))}
+        </div>
+
+     }
       {rol === "administrador" && (
         <Link
           to="/producto-registro"

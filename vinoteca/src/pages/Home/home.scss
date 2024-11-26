@@ -3,13 +3,31 @@
 .home-container {
     height: calc(100vh - 250px);
     font-family: 'Montserrat-Regular';
-    max-width: 800px !important;
+    max-width: 100% !important; // Limitar ancho máximo
+    padding-top: 150px;
+  
     p {
-        color: var.$neutral-01;
+      color: var.$neutral-01;
     }
-}
-
-.btn-wine {
+  
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); // Tres columnas
+      gap: 1.5rem; // Espacio entre las cards
+      width: 100%;
+      margin: 0 auto; // Centrar contenido
+  
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr); // Dos columnas en pantallas medianas
+      }
+  
+      @media (max-width: 576px) {
+        grid-template-columns: 1fr; // Una columna en pantallas pequeñas
+      }
+    }
+  }
+  
+  .btn-wine {
     background-color: var.$primary-01 !important; 
     color: white !important;
     width: 50px !important;

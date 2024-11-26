@@ -6,7 +6,7 @@ import Login from "./auth/Login"
 import ProductoRegistro from "./pages/ProductoRegistro";
 import Home from './Pages/Home';
 import HomeLayout from './layouts/HomeLayout';
-import CardProducto from "./componente/CardProducto";
+
 import ProductoDetalle from "./pages/ProductoDetalle";
 import foto1 from "./assets/home-layout/botella.jpg";
 import foto2 from "./assets/home-layout/botella.jpg";
@@ -34,11 +34,7 @@ const  App = () => {
         <HomeLayout><Home /></HomeLayout>}
       />
         <Route path="/producto-registro" element={<ProductoRegistro />} />
-        <Route path="/card-producto" element={<CardProducto marca={producto.marca}
-        tipo={producto.tipo}
-        cosecha={producto.cosecha}
-        precio={producto.precio}
-         />} />
+  
         <Route path="/producto-detalle" element={<ProductoDetalle producto={producto1}/>} />
 
       </Routes>
