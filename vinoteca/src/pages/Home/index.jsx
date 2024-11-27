@@ -42,16 +42,21 @@ const Home = () => {
         ( <p className="text-center">No hay animales registrados <br /> actualmente</p>) :
         
         <div className="productos-grid">
-          {productosDisponibles.map((producto) => (
-            <CardProducto
-              key={producto._id}
-              marca={producto.marca}
-              tipo={producto.tipo}
-              cosecha={producto.cosecha}
-              precio={producto.precio}
-              fotos={producto.fotos} // Pasar la lista de fotos al componente
-            />
-          ))}
+        {productosDisponibles.map((producto) => {
+  console.log("Este es el key:", producto._id); // Inspecciona el ID del producto aquí
+  return (
+    <CardProducto
+      key={producto._id}
+      id={producto._id}
+      marca={producto.marca}
+      tipo={producto.tipo}
+      cosecha={producto.cosecha}
+      precio={producto.precio}
+      fotos={producto.fotos} // Pasar la lista de fotos al componente
+    />
+  );
+})}
+
         </div>
 
      }

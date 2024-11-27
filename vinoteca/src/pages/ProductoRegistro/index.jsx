@@ -65,7 +65,7 @@ const ProductoRegistro = () => {
      
        const response = await axios.post("http://localhost:8082/api/producto/crear", data);
        console.log(response.data);
-       navigate("/register/pet/upload-successful");
+       navigate("/home");
      } catch (error) {
        console.error("Error al agregar un producto:", error);
      } finally {

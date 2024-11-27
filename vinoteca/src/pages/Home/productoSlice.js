@@ -11,7 +11,7 @@ export const listarProductos = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('http://localhost:8082/api/producto/listar'); // Aquí cambiamos la URL
-      console.log("ME traigo a los productos: ", response);
+      console.log("ME traigo a los productos: ", response.data);
       return response.data;
 
     } catch (error) {
@@ -24,10 +24,12 @@ export const productoID = createAsyncThunk(
   'productos/productoID',
   async (productoId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/${productoId}`);
+      const response = await axios.get(`http://localhost:8082/api/producto/${productoId}`);
+      console.log("Datos recibidos del backend:", response.data);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || 'Error desconocido');
+      console.error("Error al obtener producto:", error);
+      return rejectWithValue(error.response?.data || "Error desconocido");
     }
   }
 );

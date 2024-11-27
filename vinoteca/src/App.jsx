@@ -13,16 +13,7 @@ import foto2 from "./assets/home-layout/botella.jpg";
 
 
 const  App = () => {
-  const producto = {marca:"Trapiche",
-    tipo:"Malbec",
-    cosecha: "2024",
-    precio: 17000
-  }
-  const producto1 = {marca:"Trapiche",
-    tipo:"Malbec",
-    cosecha: "2024",
-    precio: 17000,
-    fotos: [foto1, foto2]}
+
   return (
     <>
       
@@ -35,7 +26,7 @@ const  App = () => {
       />
         <Route path="/producto-registro" element={<ProductoRegistro />} />
   
-        <Route path="/producto-detalle" element={<ProductoDetalle producto={producto1}/>} />
+        <Route path="/producto-detalle/:id" element={<ProductoDetalle />} />
 
       </Routes>
     </>

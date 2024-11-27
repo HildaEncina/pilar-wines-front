@@ -6,11 +6,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";  // Importar est
 
 import './CardProducto.scss'; // Importar los estilos
 
-const CardProducto = ({ marca, tipo, cosecha, precio, fotos }) => {
+const CardProducto = ({ id, marca, tipo, cosecha, precio, fotos }) => {
     const navigate = useNavigate();
+   
 
     const irDetalle = () => {
-        navigate("/producto-detalle");
+        console.log("ID de card dentro", id);
+        navigate(`/producto-detalle/${id}`); 
     }
 
     return (
