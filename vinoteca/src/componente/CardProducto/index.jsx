@@ -2,9 +2,10 @@ import { Card, CardMedia, CardContent, Typography, IconButton, Box, ButtonBase }
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";  // Importar estilos del carrusel
+import "react-responsive-carousel/lib/styles/carousel.min.css";  
+import PropTypes from 'prop-types'; 
+import './CardProducto.scss'; 
 
-import './CardProducto.scss'; // Importar los estilos
 
 const CardProducto = ({ id, marca, tipo, cosecha, precio, fotos }) => {
     const navigate = useNavigate();
@@ -50,5 +51,12 @@ const CardProducto = ({ id, marca, tipo, cosecha, precio, fotos }) => {
         </ButtonBase>
     );
 };
-
+CardProducto.propTypes = {
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    marca: PropTypes.string.isRequired,
+    tipo: PropTypes.string.isRequired,
+    cosecha: PropTypes.string.isRequired,
+    precio: PropTypes.number.isRequired,
+    fotos: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 export default CardProducto;

@@ -21,14 +21,19 @@ const Home = () => {
     dispatch(listarProductos());
   }, [dispatch]);
 
-  // Verificar token y redirigir al login si no está presente
+ 
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
   }, [token, navigate]);
 
- 
+  useEffect(() => {
+    if (token && rol) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("rol", rol);
+    }
+  }, [token, rol]);
   
   
 

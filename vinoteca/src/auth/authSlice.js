@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api/api';
-import {jwtDecode} from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode'; 
 
 // Estado inicial
 const initialState = {
   token: localStorage.getItem('token') || null,
   userId: null,
-  rol: null,
+  rol: localStorage.getItem('rol') || null, 
   loading: false,
   error: null,
 };
 
-// Acción asincrónica para el login
+
 export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await api.post('/usuario/login', credentials);
       console.log('Respuesta del servidor:', response.data); // Muestra el token
-      return response.data; // { token }
+      return response.data;
     } catch (error) {
       console.error('Error en la petición:', error.response?.data || error);
       return rejectWithValue(error.response?.data || { mensaje: 'Error desconocido' });
@@ -36,6 +36,7 @@ const authSlice = createSlice({
       state.userId = null;
       state.rol = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('rol'); 
     },
   },
   extraReducers: (builder) => {
@@ -47,11 +48,14 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         const { token } = action.payload;
         if (token) {
-          const decodedToken = jwtDecode(token); // Decodifica el JWT para extraer el payload
+          const decodedToken = jwtDecode(token); 
           state.token = token;
-          state.userId = decodedToken.id; // Extrae el ID del usuario del token
-          state.rol = decodedToken.rol;  // Extrae el rol del token
+          state.userId = decodedToken.id; 
+          state.rol = decodedToken.rol;  
+
+          // Guardar en localStorage
           localStorage.setItem('token', token);
+          localStorage.setItem('rol', decodedToken.rol);
         } else {
           state.error = 'No se recibió un token válido del servidor';
         }
@@ -64,7 +68,5 @@ const authSlice = createSlice({
   },
 });
 
-
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
-
