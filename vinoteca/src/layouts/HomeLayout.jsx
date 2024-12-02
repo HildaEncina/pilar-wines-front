@@ -1,6 +1,6 @@
 import { Container, Col, Form, Row, Button, Offcanvas } from "react-bootstrap";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../auth/authSlice";
 import profile from "../assets/home-layout/profile.png";
@@ -11,6 +11,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./home-layout.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { obtenerCarritoPorID } from "../pages/Carrito/carritoSlice";
 
 const HomeLayout = ({ children }) => {
   const [show, setShow] = useState(false);
@@ -19,13 +20,20 @@ const HomeLayout = ({ children }) => {
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
 
+
+  const { carritoActual } = useSelector((state) => state.carrito);
+  let cantidadProductos=0;
+  // let cantidadProductos = carritoActual?.productos?.length || 0;
+  cantidadProductos = cantidadProductos + carritoActual?.productos?.length;  
+
   const handleLogOut = () => {
     dispatch(logout());
     navigate("/");
   };
 
+
   const handleCartClick = () => {
-    navigate("/cart"); // Redirige al componente del carrito
+    navigate("/carrito"); // Redirige al componente del carrito
   };
 
   return (
@@ -44,9 +52,11 @@ const HomeLayout = ({ children }) => {
             onClick={handleCartClick}
           >
             <ShoppingCartIcon fontSize="large" />
-            <span className="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">
-              3
-            </span>
+            {cantidadProductos > 0 && (
+              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                {cantidadProductos}
+              </span>
+            )}
           </Button>
 
           {/* Imagen de perfil */}
@@ -58,7 +68,7 @@ const HomeLayout = ({ children }) => {
             <Offcanvas.Title>Pilar Wines </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <p>Desarrollado por Hilda</p>
+            <p>Desarrollado</p>
             <Button onClick={handleLogOut} variant="primary">
               Logout
             </Button>

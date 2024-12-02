@@ -10,7 +10,7 @@ export const listarProductos = createAsyncThunk(
   'productos/listar',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:8082/api/producto/listar'); // Aquí cambiamos la URL
+      const  response = await axios.get('http://localhost:8082/api/producto/listar'); // Aquí cambiamos la URL
       console.log("ME traigo a los productos: ", response.data);
       return response.data;
 
