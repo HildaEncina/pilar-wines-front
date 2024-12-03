@@ -22,6 +22,7 @@ const HomeLayout = ({ children }) => {
 
 
   const { carritoActual } = useSelector((state) => state.carrito);
+  console.log("Carrito actual de layaout ",carritoActual);
   let cantidadProductos=0;
   // let cantidadProductos = carritoActual?.productos?.length || 0;
   cantidadProductos = cantidadProductos + carritoActual?.productos?.length;  
@@ -33,7 +34,7 @@ const HomeLayout = ({ children }) => {
 
 
   const handleCartClick = () => {
-    navigate("/carrito"); // Redirige al componente del carrito
+    navigate('/carrito'); 
   };
 
   return (

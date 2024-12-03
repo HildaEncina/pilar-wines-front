@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import StartedScreen from './Pages/StartedScreen';
 import UsuarioRegistro from "./pages/UsuarioRegistro";
 import Login from "./auth/Login"
