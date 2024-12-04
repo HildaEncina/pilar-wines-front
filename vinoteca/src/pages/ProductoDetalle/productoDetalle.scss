@@ -1,0 +1,110 @@
+.producto-detalle {
+    padding: 2rem;
+    border: none !important;
+  
+    .product-images {
+        img {
+          width: 100%; // Asegura que ocupen todo el ancho
+          max-height: 500px; // Fija una altura máxima consistente
+          object-fit: cover; // Evita distorsión y asegura que la imagen cubra el espacio asignado
+          transition: none; // Quita cualquier animación de transición
+        }
+      }
+    
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+     
+      .product-brand {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+        text-transform: uppercase;
+       
+  
+      }
+  
+      .product-type {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #555;
+       
+      }
+  
+      .product-price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #000;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 40px;
+      }
+  
+      .product-description {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.5;
+      }
+  
+      .product-actions {
+        display: flex;
+        gap: 1rem;
+        border: none !important;
+       
+  
+        .add-to-cart {
+       
+          width: 800px !important;
+          background-color: #000;
+          color: #fff;
+          font-weight: 600;
+          text-transform: uppercase;
+          padding: 0.8rem 2rem;
+          border: none !important;
+         
+          transition: background-color 0.3s ease;
+  
+          &:hover {
+            background-color: #333;
+          }
+        }
+  
+        .contact-button {
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-weight: 600;
+          padding: 0.8rem;
+          border: none;
+          transition: background-color 0.3s ease;
+  
+        }
+      }
+  
+      .product-details {
+        border-top: 1px solid #ccc;
+        padding-top: 1rem;
+  
+        h5 {
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+  
+        ul {
+          list-style: none;
+          padding: 0;
+  
+          li {
+            font-size: 1rem;
+            color: #555;
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,97 @@
+@use "../../sass/utils/variables" as var; 
+
+.detalle-perfil-layout {
+  display: flex;
+  height: 100vh;
+
+  .menu-lateral {
+    width: 40%;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        font-size: 1rem;
+        color: #495057;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &.activo {
+          background-color: #e9f5ff;
+          color: #007bff;
+        }
+
+        &:hover {
+          background-color: #e9f5ff;
+        }
+
+        svg {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .detalle-perfil-contenido {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    text-align: center;
+
+    .btn-back {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #007bff;
+
+      &:hover {
+        color: #0056b3;
+      }
+    }
+
+    .perfil-header {
+      margin-bottom: 2rem;
+
+      .perfil-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        object-fit: cover;
+        border: 2px solid #dee2e6;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      p {
+        color: #6c757d;
+        font-size: 1rem;
+      }
+    }
+
+    .detalle-perfil-card {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+    }
+  }
+}
+
+  

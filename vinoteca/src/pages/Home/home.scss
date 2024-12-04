@@ -1,0 +1,46 @@
+@use "../../sass/utils/variables" as var;
+
+.home-container {
+  height: calc(100vh - 250px); 
+  font-family: 'Montserrat-Regular';
+  max-width: 100% !important;
+  padding-top: 150px;
+
+  p {
+    color: var.$neutral-01;
+  }
+
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+    max-height: calc(100vh - 250px); 
+    overflow-y: auto; 
+
+    
+    scroll-snap-type: y mandatory; 
+
+    
+    &::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+   
+    .producto-card {
+      scroll-snap-align: start;
+  }
+}
+
+.btn-wine {
+  background-color: var.$primary-01 !important;
+  color: white !important;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 24px !important;
+  border: none !important;
+  border-radius: 50% !important;
+}
+}

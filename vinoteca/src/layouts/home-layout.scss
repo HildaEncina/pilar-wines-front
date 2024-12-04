@@ -1,0 +1,127 @@
+@use "../sass/utils/variables" as var;
+@use "../sass/utils/media-queries" as *;
+
+.layout-container {
+    max-width: 100% !important;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .img-profile {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .btn-cart {
+        margin-left: 800px;
+        position: relative;
+        
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .badge {
+            font-size: 0.6rem;
+            padding: 0.4em 0.5em;
+            background-color: var.$primary-01; 
+        }
+    }
+}
+
+.input-search {
+    font-family: 'Montserrat-Regular';
+    font-size: 12px !important;
+    height: 45px;
+    background-color: #D8D8D8 !important;
+    &::placeholder {
+        color: #CAC9C9 !important;
+    }
+}
+
+.btn-search {
+    background-color: var.$primary-01 !important;
+    width: 44.27px;
+    border: none !important;
+    outline: none !important;
+    img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.categories {
+    .categories__title {
+        font-family: 'Montserrat-Regular';
+        color: var.$neutral-01;
+    }
+
+    .slider-container {
+        .slick-slider {
+            .slick-list {
+                height: 45px;
+            }
+        }
+
+        .regular {
+            display: flex;
+            @include cm-viewport(450px) {
+                justify-content: center;
+            }
+        }
+    }
+}
+.custom-offcanvas {
+    width: 10px !important; /* Ancho personalizado */
+    max-height: 90%; /* Si deseas limitar la altura */
+    border-radius: 0 15px 15px 0; /* Bordes redondeados opcionales */
+  }
+/* Contenedor principal para todo el contenido del Offcanvas */
+.offcanvas-body-custom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea todo el contenido a la derecha */
+  }
+
+
+  /* Estilo del logo */
+.logo-small {
+    display: block;
+    margin-bottom: 20px;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  /* Contenedor para apilar los botones */
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos a la derecha */
+    gap: 10px;
+  }
+  
+  /* Botones personalizados */
+  .custom-button {
+    background-color: transparent !important;
+    color: black !important;
+    border: none !important;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: #b22222;
+    color: #f5f5f5;
+  }
+  
+  .custom-button:focus {
+    box-shadow: none;
+  }
+  
