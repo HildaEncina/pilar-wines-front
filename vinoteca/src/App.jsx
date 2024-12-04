@@ -8,7 +8,8 @@ import HomeLayout from './layouts/HomeLayout';
 import ProductoDetalle from "./pages/ProductoDetalle";
 import Carrito from "./pages/Carrito";
 import PerfilDetalle from "./pages/PerfilDetalle";
-
+import EliminarProducto from "./pages/EliminarProducto";
+import UsuarioEdit from "./pages/UsuarioEdit";
 
 
 const  App = () => {
@@ -28,6 +29,8 @@ const  App = () => {
         <Route path="/producto-detalle/:id" element={<ProductoDetalle />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/perfil" element={<PerfilDetalle />} />
+        <Route path="/editar-perfil" element={<UsuarioEdit />} />
+        <Route path="/eliminar-producto" element={<EliminarProducto />} />
 
       </Routes>
     </>
