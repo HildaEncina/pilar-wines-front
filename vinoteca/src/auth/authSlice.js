@@ -7,9 +7,10 @@ const initialState = {
   token: localStorage.getItem('token') || null,
   userId: null,
   rol: localStorage.getItem('rol') || null,
+  usuario: null, // Nuevo estado para almacenar los datos del usuario
   loading: false,
   error: null,
-  carrito: null, // Cambiado de [] a null para diferenciar estados
+ 
 };
 
 // Thunk para login
@@ -27,44 +28,20 @@ export const login = createAsyncThunk(
   }
 );
 
-// Thunk para obtener el carrito
-export const obtenerCarrito = createAsyncThunk(
-  'auth/obtenerCarrito',
+// Thunk para obtener un usuario por ID
+export const obtenerUsuarioPorId = createAsyncThunk(
+  'auth/obtenerUsuarioPorId',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await api.get(`/api/carrito/${userId}`);
+      const response = await api.get(`http://localhost:8082/api/usuario/${userId}`);
+      console.log("Soy la respuesta de obtener usuario en el slice ", response.data)
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || { mensaje: 'Error al obtener el carrito' });
+      return rejectWithValue(error.response?.data || { mensaje: 'Error al obtener el usuario' });
     }
   }
 );
 
-// Thunk para crear un carrito
-export const crearCarrito = createAsyncThunk(
-  'auth/crearCarrito',
-  async (carritoData, { rejectWithValue }) => {
-    try {
-      const response = await api.post('/api/carrito/crear', carritoData);
-      return response.data; // El ID del carrito creado
-    } catch (error) {
-      return rejectWithValue(error.response?.data || { mensaje: 'Error al crear el carrito' });
-    }
-  }
-);
-
-// Thunk para editar un carrito
-export const editarCarrito = createAsyncThunk(
-  'auth/editarCarrito',
-  async ({ id, camposParaActualizar }, { rejectWithValue }) => {
-    try {
-      const response = await api.patch(`/api/carrito/editar/${id}`, camposParaActualizar);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response?.data || { mensaje: 'Error al editar el carrito' });
-    }
-  }
-);
 
 // Slice de autenticación
 const authSlice = createSlice({
@@ -75,7 +52,7 @@ const authSlice = createSlice({
       state.token = null;
       state.userId = null;
       state.rol = null;
-      state.carrito = null; // Limpiar el carrito al cerrar sesión
+      state.usuario = null; // Limpiar el usuario al cerrar sesión
       localStorage.removeItem('token');
       localStorage.removeItem('rol');
     },
@@ -106,26 +83,21 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload?.mensaje || 'Error al iniciar sesión';
       })
-      .addCase(obtenerCarrito.pending, (state) => {
+      .addCase(obtenerUsuarioPorId.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(obtenerCarrito.fulfilled, (state, action) => {
+      .addCase(obtenerUsuarioPorId.fulfilled, (state, action) => {
+        console.log("Usuario obtenido:", action.payload);
+        state.usuario = action.payload; // Guardar los datos del usuario
+      })
+      .addCase(obtenerUsuarioPorId.rejected, (state, action) => {
         state.loading = false;
-        state.carrito = action.payload; // Guardar el carrito obtenido
+        state.error = action.payload?.mensaje || 'Error al obtener el usuario';
       })
-      .addCase(obtenerCarrito.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload?.mensaje || 'Error al obtener el carrito';
-      })
-      .addCase(crearCarrito.fulfilled, (state, action) => {
-        state.carrito = { _id: action.payload, productos: [], cantidadProductos: 0, montoTotal: 0 };
-      })
-      .addCase(editarCarrito.fulfilled, (state, action) => {
-        state.carrito = action.payload; // Actualizar el carrito con la respuesta del servidor
-      });
-  },
+    }
 });
 
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
+

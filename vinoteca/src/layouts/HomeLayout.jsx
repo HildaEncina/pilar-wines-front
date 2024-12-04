@@ -7,11 +7,12 @@ import profile from "../assets/home-layout/profile.png";
 import menu from "../assets/home-layout/menu.png";
 import search from "../assets/home-layout/search.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { FaUser, FaHeart, FaSignOutAlt } from "react-icons/fa";
+import logo from '../assets/logo.png'
 
 import "./home-layout.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { obtenerCarritoPorID } from "../pages/Carrito/carritoSlice";
 
 const HomeLayout = ({ children }) => {
   const [show, setShow] = useState(false);
@@ -20,21 +21,27 @@ const HomeLayout = ({ children }) => {
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
 
-
   const { carritoActual } = useSelector((state) => state.carrito);
-  console.log("Carrito actual de layaout ",carritoActual);
-  let cantidadProductos=0;
+  console.log("Carrito actual de layaout ", carritoActual);
+  let cantidadProductos = 0;
   // let cantidadProductos = carritoActual?.productos?.length || 0;
-  cantidadProductos = cantidadProductos + carritoActual?.productos?.length;  
+  cantidadProductos = cantidadProductos + carritoActual?.productos?.length;
 
   const handleLogOut = () => {
     dispatch(logout());
     navigate("/");
   };
 
-
   const handleCartClick = () => {
-    navigate('/carrito'); 
+    navigate("/carrito");
+  };
+
+  const handlePerfil = () => {
+    navigate("/perfil");
+  };
+
+  const handleFavoritos = () => {
+    navigate("/favoritos");
   };
 
   return (
@@ -63,18 +70,26 @@ const HomeLayout = ({ children }) => {
           {/* Imagen de perfil */}
           <img className="img-profile" src={profile} alt="profile" />
         </header>
-
-        <Offcanvas show={show} onHide={handleClose}>
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Pilar Wines </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <p>Desarrollado</p>
-            <Button onClick={handleLogOut} variant="primary">
-              Logout
-            </Button>
-          </Offcanvas.Body>
-        </Offcanvas>
+        <Offcanvas  style={{ width: "250px" }} show={show} onHide={handleClose}>
+      <Offcanvas.Header closeButton>
+        <Offcanvas.Title>Pilar Wines</Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body className="offcanvas-body-custom">
+        <img src={logo} alt="Logo" className="logo-small" />
+        <div className="button-container">
+          
+          <Button onClick={handlePerfil}  className="custom-button mb-3">
+            <FaUser className="me-2" /> Perfil
+          </Button>
+          <Button onClick={handleFavoritos}  className="custom-button mb-3">
+            <FaHeart className="me-2" /> Favoritos
+          </Button>
+          <Button onClick={handleLogOut} className="custom-button mb-3">
+            <FaSignOutAlt className="me-2" /> Logout
+          </Button>
+        </div>
+      </Offcanvas.Body>
+    </Offcanvas>
 
         <Container>
           <Form inline>

@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import HomeLayout from './layouts/HomeLayout';
 import ProductoDetalle from "./pages/ProductoDetalle";
 import Carrito from "./pages/Carrito";
+import PerfilDetalle from "./pages/PerfilDetalle";
 
 
 
@@ -26,6 +27,7 @@ const  App = () => {
   
         <Route path="/producto-detalle/:id" element={<ProductoDetalle />} />
         <Route path="/carrito" element={<Carrito />} />
+        <Route path="/perfil" element={<PerfilDetalle />} />
 
       </Routes>
     </>

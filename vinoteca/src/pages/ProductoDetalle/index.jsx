@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productoID } from "../Home/productoSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { crearCarrito, editarCarritoPorID, obtenerCarritoPorID } from "../Carrito/carritoSlice";
-import axios from 'axios';
+
 
 const ProductoDetalle = () => {
   /** Mi producto */
