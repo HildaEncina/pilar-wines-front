@@ -16,9 +16,12 @@ const Carrito = () => {
     console.log("Soy el carritoActual de la card carrito " , carritoActual)
 
    
+    const handleEliminarProducto = () => {
+        navigate("/eliminar-producto")
+    }
+       
 
-
-    // const eliminarProducto = (idProducto) => {
+    //  = (idProducto) => {
     //     const nuevosProductos = carritoActual.productos.filter((producto) => producto.id !== idProducto);
     //     dispatch(
     //         editarCarritoPorID({
@@ -87,7 +90,7 @@ const Carrito = () => {
                                 <Button
                                     variant="outlined"
                                     color="error"
-                                    // onClick={() => eliminarProducto(producto.id)}
+                                    onClick={handleEliminarProducto}
                                     className="eliminar-producto-btn"
                                 >
                                     Eliminar

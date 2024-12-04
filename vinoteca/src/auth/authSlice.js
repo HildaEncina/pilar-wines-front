@@ -90,6 +90,7 @@ const authSlice = createSlice({
       .addCase(obtenerUsuarioPorId.fulfilled, (state, action) => {
         console.log("Usuario obtenido:", action.payload);
         state.usuario = action.payload; // Guardar los datos del usuario
+        state.loading = false; // Asegúrate de que loading pase a false
       })
       .addCase(obtenerUsuarioPorId.rejected, (state, action) => {
         state.loading = false;

@@ -13,8 +13,8 @@ const PerfilDetalle = () => {
   const { usuario, userId, loading, error } = useSelector(
     (state) => state.login
   );
-  console.log("Soy un userId de detalle perfil ", userId);
-  console.log("Soy usuario del perfil detalle ", usuario);
+  console.log("Soy un userId de editar perfil", userId);
+  console.log("Soy usuario de editar perfil", usuario);
 
   useEffect(() => {
     if (userId) {
@@ -22,16 +22,7 @@ const PerfilDetalle = () => {
     }
   }, [userId, dispatch]);
 
-  const user = {
-    foto: img,
-    nombre: "Hilda",
-    apellido: "Encina",
-    edad: 15,
-    email: "encina@hilda.com",
-    telefono: 123456789,
-    domicilio: "De prueba",
-  };
-
+  
   const handleBack = () => {
     navigate("/home");
   };
