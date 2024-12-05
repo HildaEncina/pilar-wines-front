@@ -8,7 +8,7 @@ import menu from "../assets/home-layout/menu.png";
 import search from "../assets/home-layout/search.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { FaUser, FaHeart, FaSignOutAlt } from "react-icons/fa";
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
 
 import "./home-layout.scss";
 import "slick-carousel/slick/slick.css";
@@ -20,11 +20,18 @@ const HomeLayout = ({ children }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
+  const { token, rol } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    if (token && rol) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("rol", rol);
+    }
+  }, [token, rol]);
 
   const { carritoActual } = useSelector((state) => state.carrito);
   console.log("Carrito actual de layaout ", carritoActual);
   let cantidadProductos = 0;
-  // let cantidadProductos = carritoActual?.productos?.length || 0;
   cantidadProductos = cantidadProductos + carritoActual?.productos?.length;
 
   const handleLogOut = () => {
@@ -54,42 +61,43 @@ const HomeLayout = ({ children }) => {
           </Button>
 
           {/* Botón del carrito */}
-          <Button
-            className="p-0 position-relative btn-cart"
-            variant="none"
-            onClick={handleCartClick}
-          >
-            <ShoppingCartIcon fontSize="large" />
-            {cantidadProductos > 0 && (
-              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                {cantidadProductos}
-              </span>
-            )}
-          </Button>
+          {rol !== "administrador" && (
+            <Button
+              className="p-0 position-relative btn-cart"
+              variant="none"
+              onClick={handleCartClick}
+            >
+              <ShoppingCartIcon fontSize="large" />
+              {cantidadProductos > 0 && (
+                <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                  {cantidadProductos}
+                </span>
+              )}
+            </Button>
+          )}
 
           {/* Imagen de perfil */}
           <img className="img-profile" src={profile} alt="profile" />
         </header>
-        <Offcanvas  style={{ width: "250px" }} show={show} onHide={handleClose}>
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Pilar Wines</Offcanvas.Title>
-      </Offcanvas.Header>
-      <Offcanvas.Body className="offcanvas-body-custom">
-        <img src={logo} alt="Logo" className="logo-small" />
-        <div className="button-container">
-          
-          <Button onClick={handlePerfil}  className="custom-button mb-3">
-            <FaUser className="me-2" /> Perfil
-          </Button>
-          <Button onClick={handleFavoritos}  className="custom-button mb-3">
-            <FaHeart className="me-2" /> Favoritos
-          </Button>
-          <Button onClick={handleLogOut} className="custom-button mb-3">
-            <FaSignOutAlt className="me-2" /> Logout
-          </Button>
-        </div>
-      </Offcanvas.Body>
-    </Offcanvas>
+        <Offcanvas style={{ width: "250px" }} show={show} onHide={handleClose}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Pilar Wines</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body className="offcanvas-body-custom">
+            <img src={logo} alt="Logo" className="logo-small" />
+            <div className="button-container">
+              <Button onClick={handlePerfil} className="custom-button mb-3">
+                <FaUser className="me-2" /> Perfil
+              </Button>
+              <Button onClick={handleFavoritos} className="custom-button mb-3">
+                <FaHeart className="me-2" /> Favoritos
+              </Button>
+              <Button onClick={handleLogOut} className="custom-button mb-3">
+                <FaSignOutAlt className="me-2" /> Logout
+              </Button>
+            </div>
+          </Offcanvas.Body>
+        </Offcanvas>
 
         <Container>
           <Form inline>

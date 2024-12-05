@@ -13,7 +13,7 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Seleccionar datos del estado
+  
   const { token, rol } = useSelector((state) => state.login);
   const {productosDisponibles} = useSelector((state) => state.producto); 
  
