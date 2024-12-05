@@ -22,11 +22,11 @@ const UsuarioEdit = () => {
   const dispatch = useDispatch();
   const { usuario, userId, loading, error } = useSelector((state) => state.login);
 
-  // Logs para depuración
+ 
   console.log("Soy un userId de editar perfil ", userId);
   console.log("Soy usuario del editar perfil ", usuario);
 
-  // Obtener los datos del usuario al montar el componente
+ 
   useEffect(() => {
     if (userId) {
       dispatch(obtenerUsuarioPorId(userId));
@@ -43,14 +43,14 @@ const UsuarioEdit = () => {
 
       console.log("Datos actualizados:", response.data);
       alert("¡Perfil actualizado con éxito!");
-      navigate("/perfil"); // Redirigir a otra página después de actualizar
+      navigate("/perfil"); 
     } catch (error) {
       console.error("Error al actualizar el perfil:", error.response?.data || error.message);
       alert("Hubo un problema al actualizar el perfil.");
     }
   };
 
-  // Manejo de estados de carga y errores
+  
   if (loading) {
     return <div>Cargando...</div>;
   }
