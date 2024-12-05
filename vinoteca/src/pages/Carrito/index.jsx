@@ -21,41 +21,7 @@ const Carrito = () => {
     }
        
 
-    //  = (idProducto) => {
-    //     const nuevosProductos = carritoActual.productos.filter((producto) => producto.id !== idProducto);
-    //     dispatch(
-    //         editarCarritoPorID({
-    //             id: carritoActual._id,
-    //             camposParaActualizar: {
-    //                 productos: nuevosProductos,
-    //                 cantidadProductos: nuevosProductos.length,
-    //                 montoTotal: nuevosProductos.reduce((acc, prod) => acc + prod.precio, 0)
-    //             }
-    //         })
-    //     );
-    // };
-
-    // const eliminarCarrito = () => {
-    //     dispatch(
-    //         editarCarritoPorID({
-    //             id: carritoActual._id,
-    //             camposParaActualizar: {
-    //                 productos: [],
-    //                 cantidadProductos: 0,
-    //                 montoTotal: 0
-    //             }
-    //         })
-    //     );
-    // };
-
-    // if (estado === "loading") {
-    //     return <Typography variant="h6">Cargando carrito...</Typography>;
-    // }
-
-    // if (error) {
-    //     return <Typography variant="h6" color="error">Error: {error}</Typography>;
-    // }
-
+  
     return (
         
         <Box className="carrito-container">

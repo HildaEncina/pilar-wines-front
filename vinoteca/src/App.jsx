@@ -11,6 +11,7 @@ import PerfilDetalle from "./pages/PerfilDetalle";
 import EliminarProducto from "./pages/EliminarProducto";
 import UsuarioEdit from "./pages/UsuarioEdit";
 import EditarProducto from "./pages/EditarProducto";
+import Favoritos from "./pages/Favoritos";
 
 
 const  App = () => {
@@ -33,6 +34,7 @@ const  App = () => {
         <Route path="/editar-perfil" element={<UsuarioEdit />} />
         <Route path="/eliminar-producto" element={<EliminarProducto />} />
         <Route path="/editar-producto/:id" element={<EditarProducto />} />
+        <Route path="/favoritos" element={<Favoritos />} />
 
       </Routes>
     </>

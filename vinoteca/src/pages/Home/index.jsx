@@ -55,6 +55,7 @@ const Home = () => {
       id={producto._id}
       marca={producto.marca}
       tipo={producto.tipo}
+      descripcion={producto.descripcion}
       cosecha={producto.cosecha}
       precio={producto.precio}
       fotos={producto.fotos} // Pasar la lista de fotos al componente
