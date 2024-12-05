@@ -10,6 +10,7 @@ import Carrito from "./pages/Carrito";
 import PerfilDetalle from "./pages/PerfilDetalle";
 import EliminarProducto from "./pages/EliminarProducto";
 import UsuarioEdit from "./pages/UsuarioEdit";
+import EditarProducto from "./pages/EditarProducto";
 
 
 const  App = () => {
@@ -31,6 +32,7 @@ const  App = () => {
         <Route path="/perfil" element={<PerfilDetalle />} />
         <Route path="/editar-perfil" element={<UsuarioEdit />} />
         <Route path="/eliminar-producto" element={<EliminarProducto />} />
+        <Route path="/editar-producto/:id" element={<EditarProducto />} />
 
       </Routes>
     </>
