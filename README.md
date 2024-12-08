@@ -1,6 +1,9 @@
-# <img src="https://drive.google.com/uc?export=view&id=1ZAB0cuvjDPO1wcQ0mV6IEjY0d2aYCur8" alt="Logo de Vinoteca" width="120"/>
+# <div align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1ZAB0cuvjDPO1wcQ0mV6IEjY0d2aYCur8" alt="Logo de Vinoteca" width="120"/>
+</div>
 
-# **🍷 Vinoteca Front-End- Plataforma de Comercio Electrónico de Bebidas Alcohólicas 🥂**
+
+# **🥂 Vinoteca Front-End- Plataforma de Comercio Electrónico de Bebidas Alcohólicas **
 
 ---
 ¡Bienvenido al proyecto Pilar Wines! Este sistema es una solución integral para la gestión de una vinoteca, abarcando funcionalidades tanto para el cliente final como para el administrador.
@@ -74,12 +77,41 @@ Crear una plataforma en línea para la venta de bebidas alcohólicas, ofreciendo
 _En desarrollo: se incluirán imágenes de la interfaz de usuario._  
 
 ---
+### **🚀 Instalación**
 
+**Back-End**
+`Clona el repositorio`
+git clone https://github.com/HildaEncina/vinoteca-server.git
+
+`Instala las dependencias`
+cd vinoteca-server
+npm install
+
+`Inicia el servidor`
+nodemon
+
+
+**Front-End**
+`Clona el repositorio`
+git clone https://github.com/HildaEncina/vinoteca-frontend.git
+
+`Instala las dependencias`
+cd vinoteca-frontend
+npm install
+
+`Inicia la aplicación`
+npm run dev 
+
+---
 ## **📩 Contacto**
 Si tienes preguntas o deseas colaborar en este proyecto, no dudes en ponerte en contacto:
+@HildaEncina
+@UrsulaMartinez
+@Deby93
 
-- **GitHub**: [Vinoteca-Back-End](https://github.com/HildaEncina/vinoteca-server/).
-- [Vinoteca-Front-End](https://github.com/HildaEncina/vinoteca-frontend)
+- **GitHub**:
+-  [Vinoteca-Back-End](https://github.com/HildaEncina/vinoteca-server/).
+-  [Vinoteca-Front-End](https://github.com/HildaEncina/vinoteca-frontend)
 
 ---
 
