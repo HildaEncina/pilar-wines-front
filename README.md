@@ -1,6 +1,6 @@
 # <img src="https://drive.google.com/uc?export=view&id=1ZAB0cuvjDPO1wcQ0mV6IEjY0d2aYCur8" alt="Logo de Vinoteca" width="120"/>
 
-# **🍷 Vinoteca - Plataforma de Comercio Electrónico de Bebidas Alcohólicas 🥂**
+# **🍷 Vinoteca Front-End- Plataforma de Comercio Electrónico de Bebidas Alcohólicas 🥂**
 
 ---
 ¡Bienvenido al proyecto Pilar Wines! Este sistema es una solución integral para la gestión de una vinoteca, abarcando funcionalidades tanto para el cliente final como para el administrador.
