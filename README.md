@@ -77,7 +77,7 @@ Crear una plataforma en línea para la venta de bebidas alcohólicas, ofreciendo
 _En desarrollo: se incluirán imágenes de la interfaz de usuario._  
 
 ---
-```bash
+
 ### **🚀 Instalación**
 
 **Back-End**
@@ -102,7 +102,7 @@ _En desarrollo: se incluirán imágenes de la interfaz de usuario._
 
 `Inicia la aplicación`
 -npm run dev 
-```
+
 ---
 ## **📩 Contacto**
 Si tienes preguntas o deseas colaborar en este proyecto, no dudes en ponerte en contacto:
