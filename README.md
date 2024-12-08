@@ -1,7 +1,7 @@
-# <div align="center">
-  <img src="https://drive.google.com/uc?export=view&id=1ZAB0cuvjDPO1wcQ0mV6IEjY0d2aYCur8" alt="Logo de Vinoteca" width="120"/>
-</div>
-
+<h1 align="center">
+  <br>
+  <a href=""><img src="https://drive.google.com/uc?export=view&id=1ZAB0cuvjDPO1wcQ0mV6IEjY0d2aYCur8" alt="Logo de Vinoteca" width="120></a>
+</h1>
 
 # 🥂 Vinoteca Front-End- Plataforma de Comercio Electrónico de Bebidas Alcohólicas 
 
@@ -77,37 +77,42 @@ Crear una plataforma en línea para la venta de bebidas alcohólicas, ofreciendo
 _En desarrollo: se incluirán imágenes de la interfaz de usuario._  
 
 ---
+```bash
 ### **🚀 Instalación**
 
 **Back-End**
 `Clona el repositorio`
-git clone https://github.com/HildaEncina/vinoteca-server.git
+-git clone https://github.com/HildaEncina/vinoteca-server.git
 
 `Instala las dependencias`
-cd vinoteca-server
-npm install
+-cd vinoteca-server
+-npm install
 
 `Inicia el servidor`
-nodemon
+-nodemon
 
 
 **Front-End**
 `Clona el repositorio`
-git clone https://github.com/HildaEncina/vinoteca-frontend.git
+-git clone https://github.com/HildaEncina/vinoteca-frontend.git
 
 `Instala las dependencias`
-cd vinoteca-frontend
-npm install
+-cd vinoteca-frontend
+-npm install
 
 `Inicia la aplicación`
-npm run dev 
-
+-npm run dev 
+```
 ---
 ## **📩 Contacto**
 Si tienes preguntas o deseas colaborar en este proyecto, no dudes en ponerte en contacto:
 @HildaEncina
 @UrsulaMartinez
 @Deby93
+
+> GitHub [@HildaEncina](https://github.com/HildaEncina) &nbsp;&middot;&nbsp;
+> GitHub [@UrsulaMartinez](https://github.com/UrsulaMartinez) &nbsp;
+> GitHub [@Deby93](https://github.com/Deby93) &nbsp;&middot;&nbsp;
 
 - **GitHub**:
 -  [Vinoteca-Back-End](https://github.com/HildaEncina/vinoteca-server/).
