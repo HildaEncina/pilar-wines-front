@@ -106,9 +106,7 @@ _En desarrollo: se incluirán imágenes de la interfaz de usuario._
 ---
 ## **📩 Contacto**
 Si tienes preguntas o deseas colaborar en este proyecto, no dudes en ponerte en contacto:
-@HildaEncina
-@UrsulaMartinez
-@Deby93
+
 
 > GitHub [@HildaEncina](https://github.com/HildaEncina) &nbsp;&middot;&nbsp;
 > GitHub [@UrsulaMartinez](https://github.com/UrsulaMartinez) &nbsp;
