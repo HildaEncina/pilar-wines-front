@@ -10,7 +10,7 @@ export const crearCarrito = createAsyncThunk(
   async (carritoData, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${API_URL}/crear`, carritoData);
-      return response.data;
+      return response.data; // Este endpoint devuelve el carrito creado
     } catch (error) {
       return rejectWithValue(error.response?.data || 'Error al crear el carrito');
     }
@@ -36,6 +36,7 @@ export const obtenerCarritoPorID = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${API_URL}/${id}`);
+      console.log('Carrito obtenido:', response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || 'Error al obtener el carrito');
@@ -61,8 +62,8 @@ const carritoSlice = createSlice({
   name: 'carrito',
   initialState: {
     carritos: [],
-    carritoActual: JSON.parse(localStorage.getItem('carritoActual')) || null, 
-    estado: 'idle',
+    carritoActual: null,
+    estado: 'idle', 
     error: null,
   },
   reducers: {
@@ -70,29 +71,52 @@ const carritoSlice = createSlice({
       state.carritoActual = null;
       state.estado = 'idle';
       state.error = null;
-      localStorage.removeItem('carritoActual'); 
     },
   },
   extraReducers: (builder) => {
     builder
       // Crear carrito
+      .addCase(crearCarrito.pending, (state) => {
+        state.estado = 'loading';
+      })
       .addCase(crearCarrito.fulfilled, (state, action) => {
-        state.carritoActual = action.payload;
-        localStorage.setItem('carritoActual', JSON.stringify(action.payload)); 
+        state.estado = 'succeeded';
+        state.carritoActual = action.payload; 
       })
+      .addCase(crearCarrito.rejected, (state, action) => {
+        state.estado = 'failed';
+        state.error = action.payload;
+      })
+
       // Obtener carrito por ID
-      .addCase(obtenerCarritoPorID.fulfilled, (state, action) => {
-        state.carritoActual = action.payload;
-        localStorage.setItem('carritoActual', JSON.stringify(action.payload)); 
+      .addCase(obtenerCarritoPorID.pending, (state) => {
+        state.estado = 'loading';
       })
-      // Editar carrito
-      .addCase(editarCarritoPorID.fulfilled, (state, action) => {
+      .addCase(obtenerCarritoPorID.fulfilled, (state, action) => {
+        state.estado = 'succeeded';
         state.carritoActual = action.payload;
-        localStorage.setItem('carritoActual', JSON.stringify(action.payload)); 
+        console.log('Carrito actual:', state.carritoActual); 
+    })
+      .addCase(obtenerCarritoPorID.rejected, (state, action) => {
+        state.estado = 'failed';
+        state.error = action.payload;
+      })
+
+      // Editar carrito
+      .addCase(editarCarritoPorID.pending, (state) => {
+        state.estado = 'loading';
+      })
+      .addCase(editarCarritoPorID.fulfilled, (state, action) => {
+        state.estado = 'succeeded';
+        state.carritoActual = action.payload;
+      })
+      .addCase(editarCarritoPorID.rejected, (state, action) => {
+        state.estado = 'failed';
+        state.error = action.payload;
       });
   },
 });
 
+
 export const { resetCarritoState } = carritoSlice.actions;
 export default carritoSlice.reducer;
-

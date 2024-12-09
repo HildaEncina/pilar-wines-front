@@ -15,21 +15,29 @@ import './started-screen.scss';
 const StartedScreen = () => {
   const navigate = useNavigate();
 
-  const settings = {
+  var settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    customPaging: (i) => (
-      <a>
-        <img src={dot02} alt="dot" style={{ width: '15px', height: '5px' }} />
-      </a>
+    customPaging: function (i) {
+      return (
+        <a>
+          <img
+            src={dot02}
+            alt="dot"
+            style={{ width: '15px', height: '5px' }}
+          />
+        </a>
+      );
+    },
+    appendDots: dots => (
+      <ul style={{ margin: "0px" }}> {dots} </ul>
     ),
-    appendDots: (dots) => <ul style={{ margin: "0px" }}>{dots}</ul>,
     dotsClass: "slick-dots custom-dots",
+  
   };
-
   return (
     <div className='vh-100 vw-100 d-flex align-items-center fade-in'>
       <Container>
@@ -59,24 +67,24 @@ const StartedScreen = () => {
                   className="mt-4 btn-lg"
                   onClick={() => navigate('/login')}
                   style={{
-                    backgroundColor: '#A52A2A',
-                    borderColor: '#A52A2A',
+                    backgroundColor: '#9E1B32',
+                    borderColor: '#9E1B32',
                     fontSize: '18px',
                     padding: '12px 24px',
                   }}
                 >
-                  ¡Unirme ahora! 🍷
+                  ¡Unirme ahora! 
                 </Button>
                 <Link
                   to="/login"
                   className="link mt-3"
                   style={{
-                    color: '#A52A2A',
+                    color: '#9E1B32',
                     fontWeight: 'bold',
                     textDecoration: 'none',
                   }}
                 >
-                  Omitir, por ahora
+                  Omitir
                 </Link>
               </div>
             </div>

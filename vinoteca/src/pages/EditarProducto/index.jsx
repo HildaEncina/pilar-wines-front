@@ -48,22 +48,28 @@ const EditarProducto = () => {
 
   const handleSubmit = async (values) => {
     setSubiendo(true);
-    
-
+  
     try {
-      const imageUrl = await uploadImagesToCloudinary(values.fotos);
-      console.log("Soy una imagen de editar producto ", imageUrl);
-       
+     
+      let imageUrl = productoSeleccionado.fotos;
+  
+      
+      if (values.fotos && values.fotos.length > 0) {
+        imageUrl = await uploadImagesToCloudinary(values.fotos);
+      }
+ 
+      
       const data = {
         ...values,
         fotos: imageUrl,
       };
-
+  
       await axios.put(
         `http://localhost:8082/api/producto/editar/${id}`,
-        data
+        data,
+        { headers: { Authorization: `Bearer ${token}` } } 
       );
-
+  
       navigate("/home");
     } catch (error) {
       console.error("Error al editar el producto:", error);
@@ -71,10 +77,6 @@ const EditarProducto = () => {
       setSubiendo(false);
     }
   };
-
-  if (!productoSeleccionado) {
-    return <Alert variant="info">Cargando producto...</Alert>;
-  }
 
   return (
     <Container className="container-producto">

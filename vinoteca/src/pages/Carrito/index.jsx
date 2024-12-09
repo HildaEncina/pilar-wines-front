@@ -17,13 +17,11 @@ const Carrito = () => {
     
     
     useEffect(() => {
-        if (!carritoActual) {
-            const storedCarrito = JSON.parse(localStorage.getItem('carritoActual'));
-            if (storedCarrito) {
-                dispatch(obtenerCarritoPorID(storedCarrito._id));
-            }
+        if (carritoActual?._id) {
+            dispatch(obtenerCarritoPorID(carritoActual._id));
         }
-    }, [carritoActual, dispatch]);
+    }, [carritoActual?._id, dispatch]); 
+
    
     const handleEliminarProducto = async (idProducto) => {
         if (!carritoActual?._id || !idProducto) {

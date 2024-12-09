@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   
-  // Obtener estado de Redux
+  
   const { loading, error, token, rol, userId } = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,7 +34,6 @@ const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  // Manejo del submit
   const handleSubmit = (values) => {
     const credentials = {
       email: values.email,
@@ -44,7 +43,7 @@ const Login = () => {
     console.log('Token:', token); 
    
   };
- // Restaurar usuario al cargar si hay token
+ 
  useEffect(() => {
   if (token && !userId) {
     const storedUserId = localStorage.getItem('userId');
@@ -54,13 +53,13 @@ const Login = () => {
   }
 }, [token, userId, dispatch]);
 
-// Redirección basada en rol
+
 useEffect(() => {
   if (token) {
     if (rol === 'cliente') {
       navigate('/home');
     } else {
-      navigate('/admin'); 
+      navigate('/home'); 
     }
   }
 }, [token, rol, navigate]);
