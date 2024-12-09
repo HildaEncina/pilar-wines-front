@@ -8,7 +8,6 @@ import HomeLayout from './layouts/HomeLayout';
 import ProductoDetalle from "./pages/ProductoDetalle";
 import Carrito from "./pages/Carrito";
 import PerfilDetalle from "./pages/PerfilDetalle";
-import EliminarProducto from "./pages/EliminarProducto";
 import UsuarioEdit from "./pages/UsuarioEdit";
 import EditarProducto from "./pages/EditarProducto";
 import Favoritos from "./pages/Favoritos";
@@ -27,12 +26,10 @@ const  App = () => {
         <HomeLayout><Home /></HomeLayout>}
       />
         <Route path="/producto-registro" element={<ProductoRegistro />} />
-  
         <Route path="/producto-detalle/:id" element={<ProductoDetalle />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/perfil" element={<PerfilDetalle />} />
         <Route path="/editar-perfil" element={<UsuarioEdit />} />
-        <Route path="/eliminar-producto" element={<EliminarProducto />} />
         <Route path="/editar-producto/:id" element={<EditarProducto />} />
         <Route path="/favoritos" element={<Favoritos />} />
 
