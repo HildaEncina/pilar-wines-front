@@ -4,26 +4,53 @@ import { Box, Button, Typography, Divider, Card, CardMedia, CardContent, CardAct
 import { useDispatch, useSelector } from "react-redux";
 import { obtenerCarritoPorID, editarCarritoPorID } from "./carritoSlice";
 import "./carrito-styles.scss";
-import "../../componente/CardProducto/cardProducto.scss"
-import { useNavigate, useParams } from "react-router-dom";
-
+import "../../componente/CardProducto/cardProducto.scss";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Carrito = () => {
     const navigate = useNavigate();
-    
     const dispatch = useDispatch();
+    
+    
     const { carritoActual } = useSelector((state) => state.carrito);
-    console.log("Soy el carritoActual de la card carrito " , carritoActual)
+    
+    
+    useEffect(() => {
+        if (carritoActual?._id) {
+            dispatch(obtenerCarritoPorID(carritoActual._id));
+        }
+    }, [carritoActual?._id, dispatch]); 
 
    
-    const handleEliminarProducto = () => {
-        navigate("/eliminar-producto")
-    }
-       
+    const handleEliminarProducto = async (idProducto) => {
+        if (!carritoActual?._id || !idProducto) {
+            console.error("Faltan datos para eliminar el producto.");
+            return;
+        }
 
-  
+        try {
+            const confirmar = window.confirm("¿Estás seguro de que deseas eliminar este producto del carrito?");
+            if (!confirmar) return;
+
+            
+            const response = await axios.delete(
+                `http://localhost:8082/api/carrito/eliminar-producto/${carritoActual._id}`,
+                { data: { _id: idProducto } }
+            );
+
+            console.log("Producto eliminado del carrito:", response.data);
+            
+            // Después de eliminar, actualizar el carrito
+            dispatch(obtenerCarritoPorID(carritoActual._id));  
+            console.log("soy el carrito actual despues de eliminar ", carritoActual)
+        } catch (error) {
+            console.error("Error al eliminar el producto:", error.response?.data || error.message);
+            alert("Hubo un problema al intentar eliminar el producto.");
+        }
+    };
+
     return (
-        
         <Box className="carrito-container">
             <Typography variant="h4" className="carrito-title">
                Carrito de Compras
@@ -56,7 +83,7 @@ const Carrito = () => {
                                 <Button
                                     variant="outlined"
                                     color="error"
-                                    onClick={handleEliminarProducto}
+                                    onClick={() => handleEliminarProducto(producto._id)}
                                     className="eliminar-producto-btn"
                                 >
                                     Eliminar
@@ -86,14 +113,11 @@ const Carrito = () => {
                 <Button
                     variant="contained"
                     color="primary"
-                 
                     onClick={() => navigate('/home')}
-                    target="_blank"
                     className="agregar-producto-btn"
                 >
                     Agregar más productos
                 </Button>
-
 
                 <Button
                     variant="outlined"
@@ -107,7 +131,5 @@ const Carrito = () => {
         </Box>
     );
 };
-
-
 
 export default Carrito;

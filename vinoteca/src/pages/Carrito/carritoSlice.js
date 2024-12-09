@@ -62,8 +62,8 @@ const carritoSlice = createSlice({
   name: 'carrito',
   initialState: {
     carritos: [],
-    carritoActual: null, // Carrito actualmente seleccionado
-    estado: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    carritoActual: null,
+    estado: 'idle', 
     error: null,
   },
   reducers: {
@@ -81,7 +81,7 @@ const carritoSlice = createSlice({
       })
       .addCase(crearCarrito.fulfilled, (state, action) => {
         state.estado = 'succeeded';
-        state.carritoActual = action.payload; // Guardar el carrito creado
+        state.carritoActual = action.payload; 
       })
       .addCase(crearCarrito.rejected, (state, action) => {
         state.estado = 'failed';
@@ -95,7 +95,8 @@ const carritoSlice = createSlice({
       .addCase(obtenerCarritoPorID.fulfilled, (state, action) => {
         state.estado = 'succeeded';
         state.carritoActual = action.payload;
-      })
+        console.log('Carrito actual:', state.carritoActual); 
+    })
       .addCase(obtenerCarritoPorID.rejected, (state, action) => {
         state.estado = 'failed';
         state.error = action.payload;
@@ -116,6 +117,6 @@ const carritoSlice = createSlice({
   },
 });
 
-// Exportar acciones y reducer
+
 export const { resetCarritoState } = carritoSlice.actions;
 export default carritoSlice.reducer;
