@@ -73,11 +73,7 @@ const Favoritos = () => {
                         precio={producto?.precio}
                         fotos={producto?.fotos}
                     />
-                    <Box className="price-and-button">
-                        <Button onClick={handleDetalle} variant="contained" className="add-to-list-btn">
-                            Añadir al carrito
-                        </Button>
-                    </Box>
+                    
                 </Box>
             </Grid>
         ))}

@@ -1,31 +1,39 @@
-
-.lista-productos {
+.lista-productos { 
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
     gap: 16px;
     padding: 20px;
+    background-color: #fafafa; // Fondo gris muy claro para el área de productos
+}
 
-    .product-card {
-        width: 100%; 
-        max-width: 300px; 
-    }
+.product-card {
+    width: 100%; 
+    max-width: 300px; 
+    box-sizing: border-box;
 }
 
 .card-producto {
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 12px; // Bordes más suaves
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
 
     &:hover {
-        transform: scale(1.05);
+        transform: translateY(-10px); // Eleva más la tarjeta al pasar el cursor
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
     }
 
     .card-media {
         position: relative;
+        height: 230px; // Aumentamos el alto de la imagen para mayor protagonismo
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Ajusta bien la imagen dentro del contenedor sin deformarla
+        }
     }
 
     .favorite-icon {
@@ -40,6 +48,7 @@
 
         &:hover {
             background-color: #f1f1f1;
+            transform: scale(1.1);
         }
     }
 
@@ -50,6 +59,7 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 8px;
+            margin-top: 80px; /* Margen superior de 80px */
         }
 
         .card-info {
@@ -61,14 +71,15 @@
             font-size: 20px;
             font-weight: bold;
             color: #333;
-            margin-top: 10px;
+            margin-top: auto; 
         }
     }
 }
+
 .add-to-list-btn {
     background-color: #000 !important; 
     color: white; 
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 8px 20px;
     font-size: 0.875rem;
     box-shadow: none;

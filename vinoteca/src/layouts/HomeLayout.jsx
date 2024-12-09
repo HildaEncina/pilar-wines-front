@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../auth/authSlice";
-import profile from "../assets/home-layout/profile.png";
+import profile from "../assets/pilar-fuego-bordo.png";
 import menu from "../assets/home-layout/menu.png";
 import search from "../assets/home-layout/search.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { FaUser, FaHeart, FaSignOutAlt } from "react-icons/fa";
-import logo from "../assets/logo.png";
+import logo from "../assets/pilar-fuego-bordo.png";
 
 import "./home-layout.scss";
 import "slick-carousel/slick/slick.css";

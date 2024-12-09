@@ -6,7 +6,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../authSlice";
 import * as Yup from "yup";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/pilar-fuego-bordo.png";
 
 
 
