@@ -1,16 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api/api';
-import {jwtDecode} from 'jwt-decode'; // Ajuste en la importación si es default
-
+import {jwtDecode} from 'jwt-decode'; 
 // Estado inicial
 const initialState = {
   token: localStorage.getItem('token') || null,
-  userId: null,
+  userId: localStorage.getItem('userId') || null,
   rol: localStorage.getItem('rol') || null,
-  usuario: null, // Nuevo estado para almacenar los datos del usuario
+  usuario: JSON.parse(localStorage.getItem('usuario')) || null, 
   loading: false,
   error: null,
- 
 };
 
 // Thunk para login
@@ -19,7 +17,7 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await api.post('/usuario/login', credentials);
-      console.log('Respuesta del servidor:', response.data); // Muestra el token
+      console.log('Respuesta del servidor:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error en la petición:', error.response?.data || error);
@@ -34,14 +32,13 @@ export const obtenerUsuarioPorId = createAsyncThunk(
   async (userId, { rejectWithValue }) => {
     try {
       const response = await api.get(`http://localhost:8082/api/usuario/${userId}`);
-      console.log("Soy la respuesta de obtener usuario en el slice ", response.data)
+      console.log('Usuario obtenido:', response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || { mensaje: 'Error al obtener el usuario' });
     }
   }
 );
-
 
 // Slice de autenticación
 const authSlice = createSlice({
@@ -52,9 +49,11 @@ const authSlice = createSlice({
       state.token = null;
       state.userId = null;
       state.rol = null;
-      state.usuario = null; // Limpiar el usuario al cerrar sesión
+      state.usuario = null;
       localStorage.removeItem('token');
       localStorage.removeItem('rol');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('usuario');
     },
   },
   extraReducers: (builder) => {
@@ -74,6 +73,7 @@ const authSlice = createSlice({
           // Guardar en localStorage
           localStorage.setItem('token', token);
           localStorage.setItem('rol', decodedToken.rol);
+          localStorage.setItem('userId', decodedToken.id);
         } else {
           state.error = 'No se recibió un token válido del servidor';
         }
@@ -88,17 +88,16 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(obtenerUsuarioPorId.fulfilled, (state, action) => {
-        console.log("Usuario obtenido:", action.payload);
-        state.usuario = action.payload; // Guardar los datos del usuario
-        state.loading = false; // Asegúrate de que loading pase a false
+        state.usuario = action.payload;
+        state.loading = false;
+        localStorage.setItem('usuario', JSON.stringify(action.payload)); 
       })
       .addCase(obtenerUsuarioPorId.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.mensaje || 'Error al obtener el usuario';
-      })
-    }
+      });
+  },
 });
 
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
-

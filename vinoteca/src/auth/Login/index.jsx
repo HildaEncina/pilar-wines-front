@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../authSlice";
 import * as Yup from "yup";
 import logo from "../../assets/pilar-fuego-bordo.png";
+import { obtenerUsuarioPorId } from "../authSlice";
 
 
 
@@ -25,7 +26,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   
   // Obtener estado de Redux
-  const { loading, error, token, rol } = useSelector((state) => state.login);
+  const { loading, error, token, rol, userId } = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,21 +44,26 @@ const Login = () => {
     console.log('Token:', token); 
    
   };
-
-  useEffect(() => {
-    if (token) {
-        try {
-
-            if (rol === "cliente") {
-                navigate("/home");
-            } else {
-              navigate("/home");
-            }
-        } catch (error) {
-            console.error("Error al decodificar el token:", error);
-        }
+ // Restaurar usuario al cargar si hay token
+ useEffect(() => {
+  if (token && !userId) {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      dispatch(obtenerUsuarioPorId(storedUserId));
     }
-}, [token, navigate]);
+  }
+}, [token, userId, dispatch]);
+
+// Redirección basada en rol
+useEffect(() => {
+  if (token) {
+    if (rol === 'cliente') {
+      navigate('/home');
+    } else {
+      navigate('/admin'); 
+    }
+  }
+}, [token, rol, navigate]);
   
 
   return (
