@@ -1,0 +1,65 @@
+@use "../../sass/utils/variables" as var;
+@import "node_modules/bootstrap/scss/bootstrap";
+
+
+.card-registro {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; 
+  background-color: #fff;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-family: "Montserrat-Regular"; 
+ 
+.form-register{
+    width: 100% !important; 
+    height: 60% !important;
+    max-width: 1200 !important;
+   
+   
+}
+.img-register {
+    width: 106.67px;
+    height: 120px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+}
+
+.form-group {
+    margin-bottom: 1.5rem; 
+   
+    
+}
+}
+
+.btn-register {
+    justify-content: center;
+    margin-top: 20px;
+    width: 400px !important;
+    margin-bottom: 60px;
+   
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .form-control {
+        padding-right: 2rem;
+    }
+
+    .toggle-visibility {
+        position: absolute;
+        right: 10px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .container-register {
+        width: 80% !important;
+    }
+}

@@ -1,0 +1,65 @@
+.usuario-edit-container {
+    margin-top: 100px;
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  .img-edit {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px; 
+    height: auto; 
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: black;
+  }
+  .usuario-edit-form {
+    .form-group {
+      margin-bottom: 2rem;
+  
+      label {
+        font-weight: 600;
+        color: #002b80;
+      }
+  
+      .form-control {
+        border-radius: 5px;
+        padding: 0.8rem;
+        border: 1px solid #d1d1d1;
+  
+        &:focus {
+          border-color: #002b80;
+          box-shadow: none;
+        }
+      }
+  
+      .invalid-feedback {
+        color: #e63946;
+      }
+    }
+    
+  
+    .save-button {
+      background-color: black;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      &:hover {
+        background-color:  #9E1B32;
+      }
+    }
+  }
+  
