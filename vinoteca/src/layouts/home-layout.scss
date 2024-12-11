@@ -1,23 +1,47 @@
 @use "../sass/utils/variables" as var;
 @use "../sass/utils/media-queries" as *;
 
+ 
+  body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    margin: 0; 
+  }
+  
+
 .layout-container {
-    max-width: 100% !important;
-}
+    max-width: 1200px; 
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 1rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
 
 header {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
+    position: fixed; 
+    top:0; 
+    z-index: 9;
+    background-color: #fff;
     .img-profile {
-        width: 56px;
-        height: 80px;
+        width: 30px;
+        height: 50px;
         border-radius: 50%;
     }
 
+
+
     .btn-cart {
-        margin-left: 800px;
+        margin-left: 1000px;
         position: relative;
         
         svg {
@@ -31,6 +55,16 @@ header {
             background-color: var.$primary-01; 
         }
     }
+}
+
+nav{ 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap:1rem; 
+   
+ 
+
 }
 
 .input-search {
@@ -48,6 +82,7 @@ header {
     width: 44.27px;
     border: none !important;
     outline: none !important;
+    margin-bottom: 100px;
     img {
         width: 24px;
         height: 24px;
@@ -58,6 +93,8 @@ header {
     .categories__title {
         font-family: 'Montserrat-Regular';
         color: var.$neutral-01;
+        margin-top: 8rem !important; 
+        margin-bottom: 1rem; 
     }
 
     .slider-container {
@@ -124,4 +161,66 @@ header {
   .custom-button:focus {
     box-shadow: none;
   }
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
   
+    .layout-container {
+      padding: 0.5rem;
+    }
+  
+    .btn-cart {
+      margin-left: 0;
+    }
+  
+    .input-search {
+      font-size: 12px;
+      width: 100%;
+    }
+  
+    .categories__title {
+      font-size: 14px;
+      margin-top: 6rem;
+    }
+  
+    .slider-container .regular {
+      justify-content: center;
+    }
+  
+    .custom-button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .custom-offcanvas {
+      width: 100% !important;
+    }
+  
+    .button-container {
+      gap: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .btn-cart {
+      margin-left: 0;
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  
+    .logo-small {
+      max-width: 80px;
+    }
+  
+    .input-search {
+      font-size: 10px;
+    }
+  
+    .custom-button {
+      font-size: 12px;
+      padding: 6px;
+    }
+  }

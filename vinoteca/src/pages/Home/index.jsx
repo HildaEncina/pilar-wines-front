@@ -33,10 +33,15 @@ const Home = () => {
   }, [dispatch]);
 
   return (
+   <div>
+     <div className="container categories">
+          <h2 className="my-4 categories__title">Categorias</h2>
+    </div>
     <Container
       fluid
       className="home-container d-flex align-items-center justify-content-center position-relative"
-    >
+    > 
+       
       {productosDisponibles.length === 0 ? (
         <p className="text-center">
           No hay productos disponibles actualmente.
@@ -67,6 +72,7 @@ const Home = () => {
         </Link>
       )}
     </Container>
+   </div>
   );
 };
 

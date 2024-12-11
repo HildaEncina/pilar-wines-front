@@ -1,89 +1,65 @@
-@use "../../sass/utils/variables" as var; 
+@use "../../sass/utils/variables" as var;
 @import "node_modules/bootstrap/scss/bootstrap";
 
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    width: 100%;
+.card-registro {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; 
+  background-color: #fff;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-family: "Montserrat-Regular"; 
+ 
+.form-register{
+    width: 100% !important; 
+    height: 60% !important;
+    max-width: 1200 !important;
+   
+   
 }
-
-.container-register {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    border: 0.5rem solid var.$primary-01;
-    width: 600px !important;
-}
-
-.img-register{
+.img-register {
     width: 106.67px;
-    height: 99px;
+    height: 120px;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+
+}
+
+.form-group {
+    margin-bottom: 1.5rem; 
+   
+    
+}
 }
 
 .btn-register {
-    justify-content: center; 
+    justify-content: center;
     margin-top: 20px;
     width: 400px !important;
     margin-bottom: 60px;
-    
-}
-
-.form-register { 
-    padding-right: 80px;
-    background-color: var.$neutral-04 !important;
-    border: none !important;
-    color:var.$secondary-01 !important;
-    width: 80%;
    
-
 }
+
 .password-container {
     display: flex;
     align-items: center;
     position: relative;
-  
-    .form-control {
-      padding-right: 2rem; // Deja espacio para el ícono
-    }
-  
-    .toggle-visibility {
-      position: absolute;
-      right: 10px;
-      font-size: 1.2rem;
-    }
-  }
 
-@media (max-width:800px) {
-    .container-register{
+    .form-control {
+        padding-right: 2rem;
+    }
+
+    .toggle-visibility {
+        position: absolute;
+        right: 10px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .container-register {
         width: 80% !important;
     }
 }
-
-
-.container-pass {
-   display: relative; 
-   
-}
-  
-  .toggle-visibility {
-    position: absolute;
-    right: 0;
-    top: 60%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  
-  .forgot-password {
-
-    color: var.$secondary-01;
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin-left: auto;
-  }
-  

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaUserTimes, FaTools, FaHome } from "react-icons/fa"; 
 import "./perfil-detalle_styls.scss";
-import img from "../../assets/pilar-fuego-bordo.png";
+import img from "../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 

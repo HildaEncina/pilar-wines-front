@@ -7,7 +7,7 @@ import profile from "../assets/pilar-fuego-bordo.png";
 import menu from "../assets/home-layout/menu.png";
 import search from "../assets/home-layout/search.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { FaUser, FaHeart, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaHeart, FaSignOutAlt, FaPlus } from "react-icons/fa";
 import logo from "../assets/pilar-fuego-bordo.png";
 
 import "./home-layout.scss";
@@ -30,7 +30,6 @@ const HomeLayout = ({ children }) => {
   }, [token, rol]);
 
   const { carritoActual } = useSelector((state) => state.carrito);
-  console.log("Carrito actual de layaout ", carritoActual);
   let cantidadProductos = 0;
   cantidadProductos = cantidadProductos + carritoActual?.productos?.length;
 
@@ -51,33 +50,66 @@ const HomeLayout = ({ children }) => {
     navigate("/favoritos");
   };
 
+  const handleAgregarProductos = () => {
+    navigate("/producto-registro");
+  };
+
   return (
     <>
       <div className="container p-3 layout-container">
-        <header className="d-flex justify-content-between align-items-center my-2">
-          {/* Botón del menú */}
-          <Button className="p-0" variant="none" onClick={handleShow}>
-            <img src={menu} alt="menu" />
-          </Button>
-
-          {/* Botón del carrito */}
-          {rol !== "administrador" && (
-            <Button
-              className="p-0 position-relative btn-cart"
-              variant="none"
-              onClick={handleCartClick}
-            >
-              <ShoppingCartIcon fontSize="large" />
-              {cantidadProductos > 0 && (
-                <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                  {cantidadProductos}
-                </span>
+        <header>
+          <nav className="d-flex justify-content-between align-items-center my-2">
+            <div className="nav-item">
+              {" "}
+              {/* Botón del menú */}
+              <Button className="p-0 btn-menu" variant="none" onClick={handleShow}>
+                <img src={menu} alt="menu" />
+              </Button>
+            </div>
+            <div className="nav-item">
+              {" "}
+              {/* Imagen de perfil */}
+              <img className="img-profile" src={logo} alt="profile" />
+            </div>
+            <div className="nav-item p-0 position-relative btn-cart gap-3">
+              {" "}
+              {/* Botón del carrito */}
+              {rol !== "administrador" && (
+                <Button
+                  className=""
+                  variant="none"
+                  onClick={handleCartClick}
+                >
+                  <ShoppingCartIcon fontSize="large" />
+                  {cantidadProductos > 0 && (
+                    <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                      {cantidadProductos}
+                    </span>
+                  )}
+                </Button>
               )}
-            </Button>
-          )}
+            </div>
+          </nav>
 
-          {/* Imagen de perfil */}
-          <img className="img-profile" src={profile} alt="profile" />
+          <Container>
+            <Form inline>
+              <Row>
+                <Col className="d-flex position-relative p-0">
+                  <Form.Control
+                    type="text"
+                    placeholder="Marca, cosecha, tipo"
+                    className="input-search"
+                  />
+                  <Button
+                    className="position-absolute top-50 end-0 translate-middle-y h-100 btn-search p-0"
+                    type="submit"
+                  >
+                    <img src={search} alt="search" />
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Container>
         </header>
         <Offcanvas style={{ width: "250px" }} show={show} onHide={handleClose}>
           <Offcanvas.Header closeButton>
@@ -89,39 +121,37 @@ const HomeLayout = ({ children }) => {
               <Button onClick={handlePerfil} className="custom-button mb-3">
                 <FaUser className="me-2" /> Perfil
               </Button>
-              <Button onClick={handleFavoritos} className="custom-button mb-3">
-                <FaHeart className="me-2" /> Favoritos
-              </Button>
+
+              {/* Botón de Favoritos, visible solo si no es administrador */}
+              {rol !== "administrador" && (
+                <Button
+                  onClick={handleFavoritos}
+                  className="custom-button mb-3"
+                >
+                  <FaHeart className="me-2" /> Favoritos
+                </Button>
+              )}
+
+              {/* Botón de Agregar productos, visible solo si es administrador */}
+              {rol === "administrador" && (
+                <Button
+                  onClick={handleAgregarProductos}
+                  className="custom-button mb-3"
+                >
+                  <FaPlus className="me-2" /> Agregar productos
+                </Button>
+              )}
+
               <Button onClick={handleLogOut} className="custom-button mb-3">
-                <FaSignOutAlt className="me-2" /> Logout
+                <FaSignOutAlt className="me-2" /> Cerrar sesión
               </Button>
             </div>
           </Offcanvas.Body>
         </Offcanvas>
 
-        <Container>
-          <Form inline>
-            <Row>
-              <Col className="d-flex position-relative p-0">
-                <Form.Control
-                  type="text"
-                  placeholder="Marca, cosecha, tipo"
-                  className="input-search"
-                />
-                <Button
-                  className="position-absolute top-50 end-0 translate-middle-y h-100 btn-search p-0"
-                  type="submit"
-                >
-                  <img src={search} alt="search" />
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
+       
 
-        <div className="container categories">
-          <h2 className="my-4 categories__title">Categorias</h2>
-        </div>
+       
       </div>
       <div>{children}</div>
     </>

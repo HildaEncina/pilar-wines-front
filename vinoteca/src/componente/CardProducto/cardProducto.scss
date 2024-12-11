@@ -2,8 +2,8 @@
 
 .card-producto {
    
-    width: 280px; /* Tamaño fijo para que todas las cards tengan el mismo tamaño */
-    border-radius: 12px; /* Bordes redondeados */
+    width: 280px; 
+    border-radius: 12px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     background-color: white;
     overflow: hidden;
@@ -15,9 +15,10 @@
   
     /* Foto */
     .card-media {
-      height: 180px;
+      height: 300px;
       width: 100%;
       background-color: #f0f0f0; 
+     
       overflow: hidden;
       position: relative;
       border-radius: 10px;
@@ -26,8 +27,8 @@
       
       img {
         width: 100%;
-        height: 50%;
-        object-fit: cover; 
+        height: 100%;
+        object-fit: contain;
        
       }
     }
@@ -100,4 +101,35 @@
     
       text-align: center;
     }
+
+    @media (max-width: 768px) {
+      width: 180px; /* Ajusta el tamaño de la tarjeta en móviles */
+      margin: 5px;
+  
+      .card-media {
+        height: 200px; /* Ajusta la altura de la imagen */
+      }
+  
+      .favorite-icon {
+        top: 5px;
+        right: 5px;
+      }
+  
+      .card-title {
+        font-size: 14px;
+      }
+  
+      .card-info {
+        font-size: 12px;
+      }
+  
+      .price {
+        font-size: 16px;
+      }
+    }
   }
+
+  
+
+
+  

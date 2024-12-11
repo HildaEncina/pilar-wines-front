@@ -1,11 +1,11 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Card } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/pilar-fuego-bordo.png";
 import "./usuario-registro_styles.scss";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -125,7 +125,7 @@ const UsuarioRegistro = () => {
   };
 
   return (
-    <Container className="container-register">
+    <Container className="card-registro">
       <img className="img-register" src={logo} />
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -144,7 +144,7 @@ const UsuarioRegistro = () => {
           handleSubmit: formikHandleSubmit,
           isSubmitting,
         }) => (
-          <Form ref={form} onSubmit={formikHandleSubmit}>
+        <Form className="form-container" ref={form} onSubmit={formikHandleSubmit}>
           <Form.Group controlId="formBasicEmail">
               <Form.Label></Form.Label>
               <Form.Control
@@ -311,10 +311,12 @@ const UsuarioRegistro = () => {
                 Registrarme
               </Button>
             </div>
-          </Form>
+        </Form>
         )}
       </Formik>
-    </Container>
+   
+  </Container>
+
   );
 };
 

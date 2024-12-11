@@ -1,139 +1,108 @@
-@use "../../sass/utils/variables" as var;
-@import "node_modules/bootstrap/scss/bootstrap";
 
-.container-login {
+.container_ {
+  background: url('../../assets/vinos.jpg') no-repeat center center fixed;
+  background-size: cover; 
+  height: 100vh;
+  width: 100vw; 
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 2rem; 
-  margin-top: 80px;
-  width: 600px !important;
-  background-color: #fff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
-  border: none; 
-  border-radius: 8px; 
+  justify-content: flex-end; 
+  align-items: center; 
+  margin: 0;
+  padding: 0; 
+  overflow: hidden;
 }
 
+
+.container-login {
+  background: rgba(240, 240, 240, 0.85);;
+  border-radius: 8px;
+  width: 45% !important; 
+  height: 90%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.forgot-password{
+  color:#9E1B32;
+
+}
+
+.form-control-password,
+.bnt-container .btn-large,
+.bnt-container .btn-create {
+  width: 80%; 
+}
+
+
 .logo-login {
-  width: 150px; 
-  height: 180px; 
-  margin-top: 1rem;
+  max-width: 200px;
   margin-bottom: 1rem;
 }
 
-
-.btn-create {
-  background-color: var.$primary-04 !important;
-  color: var.$primary-01 !important;
-  border-color: var.$primary-01 !important;
-  width: 400px !important;
-}
-
-.login-btn {
-  font-size: 18px;
-  color: #FFFFFF;
-  background-color: #9E1B32;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #b94e67;
-    color: #FFFFFF;
-  }
-}
-
-.form-control-password {
-  width: 100%;
-  padding-right: 80px;
-  background-color: var.$neutral-04 !important;
-  border: none !important;
-  color: var.$secondary-01 !important;
-}
-
-.container-pass {
-  position: relative;
-  width: 100%;
-  color: var.$primary-01 !important;
-}
-
-.toggle-visibility {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.forgot-password {
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin-left: auto;
-  box-sizing: border-box;
-  font-size: 12px;
-  color: var.$primary-01;
-}
-
-.img-eye {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-}
 
 .actions {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-  margin-bottom: 20px;
-}
-
-.container-recordarme {
-  display: flex;
   font-size: 0.9rem;
-  accent-color: var.$primary-01;
-  margin-bottom: 50px;
-  font-size: 12px;
+  width: 100%; 
+  gap:300px;
+  color:#9E1B32; 
 }
 
-.remember {
-  margin-right: 0.5rem;
+input[type="checkbox"] {
+  margin-right: 5px; 
 }
-
 .bnt-container {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: relative;
+  gap: 1rem;
+  align-items: center; 
+ 
+} 
+
+.btn-large{
+  width: 100% !important;
+}
+.btn-create {
+  background-color: #fff !important;
+  color: #9E1B32  !important;
+  border: none !important;
+  width: 100% !important;
+  margin-bottom: 50px;
+
+}
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: left;
 }
 
-.container-icons {
-  display: flex;
-  flex-direction: column;
-}
+@media (max-width: 480px) {
+  .container_ {
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
 
-@media (max-width: 800px) {
   .container-login {
-    width: 100% !important;
-    padding: 2rem;
-    text-align: center;
+    width: 95%;
+    padding: 1rem;
+    box-shadow: none;
   }
 
-  .remember-label,
-  .forgot-password {
-    font-size: 14px;
+  .logo-login {
+    max-width: 120px;
   }
 
-  .img-eye {
-    width: 15px;
-    height: 15px;
-    object-fit: contain;
+  .actions {
+    gap: 0.5rem;
   }
 }

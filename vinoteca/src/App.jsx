@@ -31,7 +31,7 @@ const  App = () => {
         <Route path="/perfil" element={<PerfilDetalle />} />
         <Route path="/editar-perfil" element={<UsuarioEdit />} />
         <Route path="/editar-producto/:id" element={<EditarProducto />} />
-        <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/favoritos" element={ <HomeLayout><Favoritos /></HomeLayout>} />
 
       </Routes>
     </>
